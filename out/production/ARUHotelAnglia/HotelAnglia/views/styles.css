@@ -1,0 +1,123 @@
+.root {
+    -fx-background-color: #071c49;
+    -fx-grid-lines-visible: true;
+    -fx-alignment: center;
+    -fx-hgap: 25;
+    -fx-vgap: 10;
+    -fx-font-family: sans-serif;
+    -fx-text-fill: #ffffff;
+}
+
+
+
+.main-button {
+    -fx-background-color: #fdd100;
+    -fx-border-color: #e1c848;
+    /*-fx-text-fill: #e1c848;*/
+    /*-fx-text-fill: #ffffff;*/
+    -fx-text-fill: inherit;
+    -fx-pref-height: 60px;
+    -fx-cursor: hand;
+    -fx-font-size: 18px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-font-weight: 700;
+    -fx-border-width: 3px;
+    -fx-border-style: none;
+}
+
+.title {
+    -fx-font-size: 25px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #fdd100;
+    -fx-alignment: center;
+
+}
+
+.text {
+    /*-fx-font-size: 16px;*/
+    -fx-text-fill: inherit;
+}
+
+.text-field {
+    -fx-background-color: #ffffff;
+    -fx-border-style: none;
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px;
+}
+
+.normal-button {
+    -fx-background-color: #fdd100;
+    -fx-border-color: #e1c848;
+    -fx-text-fill: #ffffff;
+    -fx-cursor: hand;
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px;
+    -fx-font-weight: 700;
+    -fx-border-width: 3px;
+    -fx-border-style: none;
+    -fx-padding: 7px;
+}
+
+.center {
+    -fx-alignment: center;
+    -fx-padding: 15px;
+    -fx-spacing: 10px;
+}
+
+.error {
+    -fx-content-display: none;
+    -fx-text-fill: #ffffff;
+    -fx-min-width: 200px;
+    -fx-fill-width: 200px;
+    -fx-fit-to-width: 200px;
+}
+
+/*.main-button:hover {*/
+/*    -fx-background-color: #e1c848;*/
+/*}*/
+
+/*.main-button:pressed {*/
+/*    -fx-translate-y: 0.8;*/
+/*    -fx-translate-x: 0.8;*/
+/*}*/
+
+#mainWindow {
+    -fx-pref-height: 300px;
+    -fx-pref-width: 500px;
+}
+
+#customerView {
+    -fx-pref-height: 300px;
+    -fx-pref-width: 500px;
+}
+
+#managementLoginWindow {
+    -fx-pref-width: 600px;
+    -fx-pref-height: 300px;
+}
+
+#newBookingViewWindow {
+    -fx-pref-width: 600px;
+    -fx-pref-height: 300px;
+}
+
+#applicationFormWindow {
+    -fx-pref-width: 600px;
+    -fx-pref-height: 300px;
+}
+
+#customerManageBookingWindow {
+    -fx-pref-width: 600px;
+    -fx-pref-height: 300px;
+}
+
+#managementWindow {
+    -fx-pref-width: 600px;
+    -fx-pref-height: 400px;
+}
+
+#manageBookingWindow {
+    -fx-pref-width: 600px;
+    -fx-pref-height: 400px;
+}

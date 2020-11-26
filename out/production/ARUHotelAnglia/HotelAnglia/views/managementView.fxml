@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="managementWindow" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HotelAnglia.controllers.ManagementView">
+
+
+    <top>
+        <MenuBar>
+            <Menu text="Bookings">
+                <items>
+                    <MenuItem onAction="#pushManageBookingsView" text="Manage Bookings" />
+                    <MenuItem text="Check-in" />
+                    <MenuItem text="Check-out" />
+                </items>
+            </Menu>
+            <Menu text="Rooms">
+                <items>
+                    <MenuItem text="Manage Rooms" />
+                </items>
+            </Menu>
+            <Menu text="Services">
+                <items>
+                    <MenuItem text="Manage Services" />
+                </items>
+            </Menu>
+            <Menu text="Administrative">
+                <items>
+                    <MenuItem text="Administrative" />
+                </items>
+            </Menu>
+            <Menu text="Reports">
+                <items>
+                    <MenuItem text="Room Status Report" />
+                    <MenuItem text="Receipt" />
+                    <MenuItem text="Search" />
+                    <MenuItem text="Revenue" />
+                    <MenuItem text="History" />
+                </items>
+            </Menu>
+            <Menu text="About">
+                <items>
+                    <MenuItem text="About" />
+                </items>
+            </Menu>
+        </MenuBar>
+    </top>
+
+    <center>
+        <GridPane fx:id="rootPane" alignment="TOP_CENTER">
+            <Label styleClass="text" text="Select an option from the menu" />
+        </GridPane>
+    </center>
+
+    <stylesheets>
+        <URL value="@styles.css" />
+    </stylesheets>
+
+</BorderPane>

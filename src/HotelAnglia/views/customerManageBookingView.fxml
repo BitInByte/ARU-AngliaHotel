@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.*?>
+
+<GridPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="HotelAnglia.controllers.CustomerManageBookingView"
+            fx:id="customerManageBookingWindow">
+
+    <HBox styleClass="center" GridPane.rowIndex="0" GridPane.columnIndex="0"  >
+        <Label text="Manage Booking" styleClass="title" />
+    </HBox>
+
+    <Label text="Insert booking id" styleClass="text" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+    <TextField fx:id="bookingidtf" GridPane.rowIndex="2" GridPane.columnIndex="0" onKeyReleased="#fieldValidate" />
+
+    <HBox styleClass="center" GridPane.rowIndex="3" GridPane.columnIndex="0" >
+        <Label fx:id="errorlb" text="" styleClass="error" />
+    </HBox>
+
+    <HBox styleClass="center" GridPane.rowIndex="4" GridPane.columnIndex="0" >
+        <Button fx:id="submitbtn" text="Manage Booking" styleClass="normal-button" onAction="#submitHandler" />
+        <Button fx:id="backbtn" text="Go Back" styleClass="normal-button" onAction="#closePage" />
+    </HBox>
+
+    <stylesheets>
+        <URL value="@styles.css" />
+    </stylesheets>
+</GridPane>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<GridPane fx:id="mainWindow"  xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="HotelAnglia.controllers.MainWindowController">
+    <Button fx:id="customerBtn" styleClass="main-button" text="Customer" GridPane.columnIndex="0" GridPane.rowIndex="0" onAction="#pushCustomerWindow" />
+    <Button fx:id="managementBtn" styleClass="main-button" text="Management"  GridPane.columnIndex="1" GridPane.rowIndex="0" onAction="#pushManagementWindow" />
+
+    <stylesheets>
+        <URL value="@styles.css" />
+    </stylesheets>
+</GridPane>
