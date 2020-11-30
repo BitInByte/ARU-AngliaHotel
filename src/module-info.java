@@ -8,6 +8,6 @@ module ARUHotelAnglia {
     //    Points the objects and packages that will use JavaFX
     opens HotelAnglia;
     opens HotelAnglia.controllers;
-//    opens HotelAnglia.models;
+    opens HotelAnglia.models;
     opens HotelAnglia.views;
 }

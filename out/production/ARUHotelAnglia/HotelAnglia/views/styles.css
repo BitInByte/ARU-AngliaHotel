@@ -73,6 +73,11 @@
     -fx-fit-to-width: 200px;
 }
 
+.roomstv {
+    -fx-pref-width: 500px;
+    -fx-pref-height: 200px;
+}
+
 /*.main-button:hover {*/
 /*    -fx-background-color: #e1c848;*/
 /*}*/
@@ -120,4 +125,14 @@
 #manageBookingWindow {
     -fx-pref-width: 600px;
     -fx-pref-height: 400px;
+}
+
+#manageRoomWindow {
+    -fx-pref-width: 600px;
+    -fx-pref-height: 400px;
+}
+
+#roomEditWindow {
+    -fx-pref-height: 300px;
+    -fx-pref-width: 500px;
 }

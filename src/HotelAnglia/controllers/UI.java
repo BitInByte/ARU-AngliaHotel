@@ -26,6 +26,7 @@ public class UI {
             stage.show();
         } catch (Exception e) {
             System.out.println(e);
+            e.printStackTrace();
         }
     }
 

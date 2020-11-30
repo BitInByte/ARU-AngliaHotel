@@ -19,8 +19,9 @@ public class ManagementView {
         UI.changePane(rootPane, "manageBookingView");
     }
 
-    public void pushManageRoomsView() {
-
+    public void pushManageRoomsView() throws IOException {
+        UI UI = new UI();
+        UI.changePane(rootPane, "manageRoomView");
     }
 
     public void pushManageServicesView() {

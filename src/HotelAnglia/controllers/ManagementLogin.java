@@ -37,7 +37,8 @@ public class ManagementLogin {
         UI UI = new UI();
 
 
-        String query = "SELECT * FROM account WHERE username = '" + this.username.getText() + "' AND password = '" + this.password.getText() + "';";
+        String query = "SELECT account_id, username FROM management_user WHERE username = '" + this.username.getText() + "' AND password = crypt('" + this.password.getText() + "', password);";
+        System.out.println(query);
         ResultSet result = Connect.sqlExecute(query);
         try {
 

@@ -4,12 +4,17 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
+
+import HotelAnglia.models.Room;
 
 public class NewBookingView {
 
@@ -29,6 +34,9 @@ public class NewBookingView {
 
     @FXML
     private Label errorlb;
+
+    @FXML
+    private ComboBox<String> roomTypecb;
 
     @FXML
     public void initialize() {
@@ -72,7 +80,22 @@ public class NewBookingView {
             }
         });
 
+//        String roomTypesQuery = "SELECT type FROM room GROUP BY type;";
+//        ResultSet roomTypes = Connect.sqlExecute(roomTypesQuery);
+//        Connect.resultPrinter(roomTypes);
+//        roomTypecb.getItems().addAll(roomTypes);
+//        while(roomTypes.next()) {
+//            for(int i=1; i<=roomTypes.getMetaData().getColumnCount(); i++){
+//                System.out.println(roomTypes.getString(i));
+//                roomTypecb.getItems().add(roomTypes.getString(i));
+//            }
+//        }
 
+//        Get the Room Types
+        ArrayList<String> roomTypes = Room.getRoomTypes();
+//        Add room types to the combobox
+        roomTypecb.getItems().addAll(roomTypes);
+        roomTypecb.setValue(roomTypes.get(0));
     }
 
     public void submitHandler() {
