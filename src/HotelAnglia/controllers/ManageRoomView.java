@@ -2,8 +2,10 @@ package HotelAnglia.controllers;
 
 import HotelAnglia.models.Room;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
@@ -11,9 +13,15 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import org.w3c.dom.events.MouseEvent;
 
+
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+
+
 
 public class ManageRoomView {
 
@@ -53,7 +61,7 @@ public class ManageRoomView {
         this.listRooms(roomTypecb.getValue().toString());
     }
 
-    public void changeValuesHandler() {
+    public void changeValuesHandler() throws IOException {
         Room room = (Room) roomstv.getSelectionModel().getSelectedItem();
         System.out.println(room.getRoom_id());
         this.selectedRoom = room;
@@ -78,19 +86,39 @@ public class ManageRoomView {
 //            e.printStackTrace();
 //        }
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/HotelAnglia/views/roomEditView.fxml"));
-        try {
-            Parent parent = loader.load();
-            if(parent!=null) {
-                RoomEditView controller = loader.getController();
-                controller.setRoomDate(room);
-            }
-            Stage stage = new Stage();
-            stage.setScene(new Scene(parent));
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/HotelAnglia/views/roomEditView.fxml"));
+//        try {
+//            Parent parent = loader.load();
+//            if(parent!=null) {
+//                RoomEditView controller = loader.getController();
+//                controller.setRoomDate(room);
+//            }
+//            Stage stage = new Stage();
+//            stage.setScene(new Scene(parent));
+//            stage.show();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/HotelAnglia/views/roomEditView.fxml"));
+        Parent pushingWindow = loader.load();
+        Scene pushingWindowScene = new Scene(pushingWindow);
+
+//        Access the controller and call a method
+        RoomEditView controller = loader.getController();
+//        controller.initData("It works!");
+        controller.initData((Room)roomstv.getSelectionModel().getSelectedItem());
+
+
+//        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+//        window.show();
+        Stage stage = new Stage();
+        stage.setTitle("Edit room");
+        stage.setScene(pushingWindowScene);
+        stage.setResizable(false);
+        stage.show();
+
     }
 
     public Room getRoom() { return this.selectedRoom; }

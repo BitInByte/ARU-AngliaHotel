@@ -19,6 +19,8 @@ public class Main extends Application {
 //        primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.show();
 
+//        Create database
+        this.createDB();
 
         if(!Connect.getConnected("postgres", "admin")){
             System.out.println("Wrong Password...");
@@ -37,11 +39,16 @@ public class Main extends Application {
         launch(args);
     }
 
+    private void createDB() {
+       Connect.createDatabase("postgres", "admin");
+    }
+
     private void createTables() {
+
 //        Enable password encriptation
         String cryptoEnable = "CREATE EXTENSION pgcrypto;";
-//        Create tables
         Connect.sqlUpdate(cryptoEnable);
+//        Create tables
         String accountTable = "CREATE TABLE management_user (account_id SERIAL PRIMARY KEY, username VARCHAR(30) NOT NULL, password TEXT NOT NULL);";
         Connect.sqlUpdate(accountTable);
         String customerTable = "CREATE TABLE customer (customer_id SERIAL, username VARCHAR(30) NOT NULL, email VARCHAR(80) NOT NULL, PRIMARY KEY (customer_id));";

@@ -60,13 +60,13 @@ public class Room {
         Room room;
         while(results.next()) {
 //            System.out.println(results.getInt("room_id"));
-            room = new Room(results.getInt("room_id"), results.getString("type"), results.getString("availability"), results.getDouble("price"));
+            room = new Room(results.getInt("room_id"), results.getString("availability"), results.getString("type"), results.getDouble("price"));
             roomsList.add(room);
         }
         return roomsList;
     }
 
-    public int getRoom_id() { return this.room_id; }
+    public String getRoom_id() { return Integer.toString(this.room_id); }
     public String getType() { return this.type; }
     public String getAvailability() { return this.availability; }
     public double getPrice() { return this.price; }

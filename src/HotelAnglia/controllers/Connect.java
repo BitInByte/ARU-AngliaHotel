@@ -10,6 +10,18 @@ public class Connect {
         private static String dbUrl  = "jdbc:postgresql://localhost:5432/HotelAnglia";
 
 
+        public static void createDatabase(String userName, String password) {
+            String postgresqlpath = "jdbc:postgresql://localhost:5432/";
+            try {
+                Connection db = DriverManager.getConnection(postgresqlpath, userName, password);
+                Statement sqlStat = db.createStatement();
+                sqlStat.executeUpdate("CREATE DATABASE HotelAnglia;");
+                db.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
 
         public static boolean getConnected(String userName, String passWord){
 
