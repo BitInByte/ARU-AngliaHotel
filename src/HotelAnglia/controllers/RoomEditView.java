@@ -4,6 +4,7 @@ import HotelAnglia.models.Room;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 
@@ -24,6 +25,9 @@ public class RoomEditView {
 
     @FXML
     private ComboBox<String> roomavailabilitycb;
+
+    @FXML
+    private Button submitbt;
 
 
 //    @FXML
@@ -51,6 +55,14 @@ public class RoomEditView {
 //        this.roomtitlel.setText(data);
 //        System.out.println(data);
 //    }
+
+    public void changeRoomAvailabilityHandler() {
+        this.room.updateRoomAvailability(roomavailabilitycb.getValue());
+        UI ui = new UI();
+        ui.closeUIElement(submitbt);
+//        System.out.println(roomavailabilitycb.getValue());
+    }
+
     public void initData(Room room) {
         this.room = room;
         roomiddl.setText(room.getRoom_id());

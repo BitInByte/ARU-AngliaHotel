@@ -10,14 +10,14 @@
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="HotelAnglia.controllers.ManageRoomView">
-    <GridPane alignment="TOP_CENTER" fx:id="manageRoomWindow">
-        <HBox styleClass="center" GridPane.rowIndex="0" GridPane.columnIndex="0"  >
+    <GridPane alignment="TOP_CENTER" fx:id="manageRoomWindow" hgap="10" vgap="10">
+        <HBox styleClass="center" GridPane.rowIndex="0" GridPane.columnSpan="2" >
             <Label text="Manage Room" styleClass="title" />
         </HBox>
-        <Label styleClass="text" text="Room Type" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+        <Label styleClass="text" text="Room Type: " GridPane.rowIndex="1" GridPane.columnIndex="0" />
         <ComboBox fx:id="roomTypecb" GridPane.rowIndex="1" GridPane.columnIndex="1" onAction="#fetchRooms">
         </ComboBox>
-        <Label styleClass="text" text="Select the room" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+        <Label styleClass="text" text="Select the room: " GridPane.rowIndex="2" GridPane.columnIndex="0" />
         <TableView fx:id="roomstv" styleClass="roomstv" GridPane.rowIndex="3" GridPane.columnIndex="0" GridPane.columnSpan="2" onMouseClicked="#changeValuesHandler">
             <columns>
                 <TableColumn fx:id="roomID" text="Room ID" />

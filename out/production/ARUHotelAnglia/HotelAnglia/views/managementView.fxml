@@ -18,7 +18,8 @@
             </Menu>
             <Menu text="Rooms">
                 <items>
-                    <MenuItem onAction="#pushManageRoomsView" text="Manage Rooms" />
+                    <MenuItem onAction="#pushManageRoomsView" text="Manage Rooms Availability" />
+                    <MenuItem onAction="#pushManageRoomsPriceView" text="Manage Rooms Price" />
                 </items>
             </Menu>
             <Menu text="Services">

@@ -36,7 +36,7 @@
 
 .text {
     /*-fx-font-size: 16px;*/
-    -fx-text-fill: inherit;
+    -fx-text-fill: #ffffff;
 }
 
 .text-field {

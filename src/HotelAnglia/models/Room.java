@@ -1,5 +1,6 @@
 package HotelAnglia.models;
 
+import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -27,6 +28,15 @@ public class Room {
         this.availability = availability;
         this.type = type;
         this.price = price;
+    }
+
+    public void updateRoomAvailability(String availability) {
+        try {
+            String updateRoomQuery = "UPDATE room SET availability = '" + availability + "' WHERE room_id = " + this.room_id + ";";
+            Connect.sqlUpdate(updateRoomQuery);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static ArrayList<String> getRoomTypes() {
@@ -64,6 +74,32 @@ public class Room {
             roomsList.add(room);
         }
         return roomsList;
+    }
+
+    public static Double getRoomPriceWhereType(String type) throws SQLException {
+         Double price = null;
+
+        System.out.println(type);
+        String query = "SELECT price FROM room WHERE type = '" + type + "' GROUP BY price;";
+        ResultSet result = Connect.sqlExecute(query);
+//        Connect.resultPrinter(result);
+//        System.out.println(result.getString("price"));
+        while (result.next()) {
+//            for (int i = 1; i <= result.getMetaData().getColumnCount(); i++) {
+//                price += Double.parseDouble(result.getString(i));
+//                System.out.println(result.getString(i));
+//            }
+            price = result.getDouble("price");
+            System.out.println(result.getDouble("price"));
+        }
+        System.out.println(price);
+
+        return price;
+    }
+
+    public static void updateRoomPrice(Double newPrice, String type) {
+        String query = "UPDATE room SET price = '" + newPrice + "' WHERE type = '" + type + "';";
+        Connect.sqlUpdate(query);
     }
 
     public String getRoom_id() { return Integer.toString(this.room_id); }

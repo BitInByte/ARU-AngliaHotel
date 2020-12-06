@@ -49,7 +49,7 @@ public class Connect {
             try {
                 Statement sqlStat = db.createStatement();
                 ResultSet rs = sqlStat.executeQuery(statement);
-                System.out.println("SQL Statement Updated Successfully...");
+                System.out.println("SQL Statement Executed Successfully...");
                 return rs;
 
             }catch (Exception e){

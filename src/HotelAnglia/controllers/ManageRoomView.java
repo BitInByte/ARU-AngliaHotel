@@ -121,7 +121,7 @@ public class ManageRoomView {
 
     }
 
-    public Room getRoom() { return this.selectedRoom; }
+//    public Room getRoom() { return this.selectedRoom; }
 
     private void listRooms(String roomType) throws SQLException {
         ObservableList<Room> roomList = Room.getRoomObservableList(roomType);
