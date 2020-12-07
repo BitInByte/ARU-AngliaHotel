@@ -16,6 +16,10 @@ public class Room {
     private String type;
     private double price;
 
+    public Room() {
+
+    }
+
     public Room(int room_id, String type, double price) {
         this.room_id = room_id;
         this.availability = "Available";
@@ -30,6 +34,15 @@ public class Room {
         this.price = price;
     }
 
+//    public void updateRoomAvailability(String availability) {
+//        try {
+//            String updateRoomQuery = "UPDATE room SET availability = '" + availability + "' WHERE room_id = " + this.room_id + ";";
+//            Connect.sqlUpdate(updateRoomQuery);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
+
     public void updateRoomAvailability(String availability) {
         try {
             String updateRoomQuery = "UPDATE room SET availability = '" + availability + "' WHERE room_id = " + this.room_id + ";";
@@ -37,6 +50,20 @@ public class Room {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void reserveRoom() {
+//        if(this.type.equals("Available")) {
+        try {
+            String query = "UPDATE room SET availability = 'Reserved' WHERE room_id = " + this.room_id + ";";
+            Connect.sqlUpdate(query);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+//        } else {
+//
+//        }
     }
 
     public static ArrayList<String> getRoomTypes() {
@@ -64,7 +91,7 @@ public class Room {
 
     public static ObservableList<Room> getRoomObservableList(String roomType) throws SQLException {
         ObservableList<Room> roomsList = FXCollections.observableArrayList();
-        String query = "SELECT * FROM room WHERE type = '" + roomType + "';";
+        String query = "SELECT * FROM room WHERE type = '" + roomType + "' ORDER BY room_id ASC;";
         System.out.println(query);
         ResultSet results = Connect.sqlExecute(query);
         Room room;
@@ -102,7 +129,20 @@ public class Room {
         Connect.sqlUpdate(query);
     }
 
-    public String getRoom_id() { return Integer.toString(this.room_id); }
+    public static Room getAvailableRoom(String type) throws SQLException {
+        System.out.println(type);
+        Room room = new Room();
+        String query = "SELECT * FROM room WHERE availability = 'Available' AND type = '" + type + "' ORDER BY room_id ASC LIMIT 1";
+        System.out.println(query);
+        ResultSet result = Connect.sqlExecute(query);
+        while(result.next()) {
+            room = new Room(result.getInt("room_id"), result.getString("availability"), result.getString("type"), result.getDouble("price"));
+        }
+
+        return room;
+    }
+
+    public int getRoom_id() { return this.room_id; }
     public String getType() { return this.type; }
     public String getAvailability() { return this.availability; }
     public double getPrice() { return this.price; }

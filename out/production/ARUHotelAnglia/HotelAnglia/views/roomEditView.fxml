@@ -14,7 +14,7 @@
           fx:id="roomEditWindow">
 
     <Label fx:id="roomidl" styleClass="text" text="Room ID: " GridPane.rowIndex="0" GridPane.columnIndex="0" />
-    <Label fx:id="roomiddl" styleClass="text" text="Room ID: " GridPane.rowIndex="0" GridPane.columnIndex="1" />
+    <Label fx:id="roomiddl" styleClass="text" text="" GridPane.rowIndex="0" GridPane.columnIndex="1" />
     <Label fx:id="roomavailabilityl" styleClass="text" text="Room Availability: " GridPane.rowIndex="1" GridPane.columnIndex="0" />
     <ComboBox fx:id="roomavailabilitycb" GridPane.rowIndex="1" GridPane.columnIndex="1" >
         <items>
@@ -26,7 +26,9 @@
         </items>
     </ComboBox>
 
-    <Button text="Submit" fx:id="submitbt" styleClass="normal-button"  GridPane.rowIndex="2" GridPane.columnIndex="0" onAction="#changeRoomAvailabilityHandler" />
+    <Label fx:id="errorl" styleClass="text" text="This room is not available to change" GridPane.rowIndex="0" GridPane.columnSpan="2" />
+
+    <Button text="Submit" fx:id="submitbt" styleClass="normal-button"  GridPane.rowIndex="2" GridPane.columnSpan="2" onAction="#changeRoomAvailabilityHandler" />
 
     <stylesheets>
         <URL value="@styles.css" />

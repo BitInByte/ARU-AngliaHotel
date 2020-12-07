@@ -3,11 +3,15 @@ package HotelAnglia.controllers;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -15,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import HotelAnglia.models.Room;
+import javafx.stage.Stage;
 
 public class NewBookingView {
 
@@ -98,10 +103,30 @@ public class NewBookingView {
         roomTypecb.setValue(roomTypes.get(0));
     }
 
-    public void submitHandler() {
+    public void submitHandler() throws IOException {
+
+//        Load new window and controller
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/HotelAnglia/views/applicationFormView.fxml"));
+        Parent pushingWindow = loader.load();
+        Scene pushingWindowScene = new Scene(pushingWindow);
+
+//        Push new data to the next controller
+        ApplicationFormView controller = loader.getController();
+//        controller.initData("It works!");
+        controller.initData(datedp.getValue(), roomTypecb.getSelectionModel().getSelectedItem());
+
+//        Open new window
+        Stage stage = new Stage();
+        stage.setTitle("Room Application Form");
+        stage.setScene(pushingWindowScene);
+        stage.setResizable(false);
+        stage.show();
+
+//        Close current window
         UI UI = new UI();
         UI.closeUIElement(submitbtn);
-        UI.createUIElement("Application Form", "applicationFormView");
+//        UI.createUIElement("Application Form", "applicationFormView");
     }
 
 //    Close page deleting the view

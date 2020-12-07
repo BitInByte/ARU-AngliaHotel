@@ -45,19 +45,19 @@ public class Main extends Application {
 
     private void createTables() {
 
-//        Enable password encriptation
+//        Enable password encryptation
         String cryptoEnable = "CREATE EXTENSION pgcrypto;";
         Connect.sqlUpdate(cryptoEnable);
 //        Create tables
         String accountTable = "CREATE TABLE management_user (account_id SERIAL PRIMARY KEY, username VARCHAR(30) NOT NULL, password TEXT NOT NULL);";
         Connect.sqlUpdate(accountTable);
-        String customerTable = "CREATE TABLE customer (customer_id SERIAL, username VARCHAR(30) NOT NULL, email VARCHAR(80) NOT NULL, PRIMARY KEY (customer_id));";
+        String customerTable = "CREATE TABLE customer (customer_id SERIAL, full_name VARCHAR(80) NOT NULL, email VARCHAR(80) NOT NULL, PRIMARY KEY (customer_id));";
         Connect.sqlUpdate(customerTable);
         String roomTable = "CREATE TABLE room (room_id SERIAL PRIMARY KEY, type VARCHAR(30) NOT NULL, availability VARCHAR(30) NOT NULL, price NUMERIC NOT NULL);";
         Connect.sqlUpdate(roomTable);
-        String serviceTable = "CREATE TABLE service (service_id SERIAL PRIMARY KEY, type VARCHAR(30) NOT NULL, price NUMERIC NOT NULL);";
+        String serviceTable = "CREATE TABLE service (service_id SERIAL PRIMARY KEY, type VARCHAR(30) NOT NULL, price DOUBLE PRECISION NOT NULL);";
         Connect.sqlUpdate(serviceTable);
-        String paymentTable = "CREATE TABLE payment (payment_id SERIAL PRIMARY KEY, date DATE NOT NULL, status VARCHAR(30) NOT NULL, payment_method VARCHAR(30) NOT NULL);";
+        String paymentTable = "CREATE TABLE payment (payment_id SERIAL PRIMARY KEY, date DATE, isPaid BOOLEAN NOT NULL, payment_method VARCHAR(30) NOT NULL, total_price DOUBLE PRECISION NOT NULL);";
         Connect.sqlUpdate(paymentTable);
         String bookingTable = "CREATE TABLE booking (booking_id SERIAL PRIMARY KEY, reservation_date DATE NOT NULL, status VARCHAR(30) NOT NULL, booking_date DATE NOT NULL, room_id INTEGER NOT NULL, customer_id INTEGER NOT NULL, payment_id INTEGER NOT NULL, FOREIGN KEY (room_id) REFERENCES room(room_id) ON UPDATE CASCADE ON DELETE CASCADE, FOREIGN KEY (customer_id) REFERENCES customer(customer_id) ON UPDATE RESTRICT ON DELETE RESTRICT, FOREIGN KEY (payment_id) REFERENCES payment(payment_id) ON UPDATE CASCADE ON DELETE CASCADE);";
         Connect.sqlUpdate(bookingTable);

@@ -1,6 +1,9 @@
 package HotelAnglia.controllers;
 
 import java.sql.*;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 public class Connect {
 
@@ -54,6 +57,7 @@ public class Connect {
 
             }catch (Exception e){
                 System.out.println("SQL Error...");
+                e.printStackTrace();
             }
             return null;
 
@@ -69,22 +73,137 @@ public class Connect {
 
         }
 
-        public static void prepupdate(String pStatement, String[] values){
+        public static int prepUpdatePayment(String pStatement, String[] values){
+            int returnedId = -1;
             try{
-                PreparedStatement prepStat = db.prepareStatement(pStatement);
-                prepStat.setInt(1, Integer.parseInt(values[2]));
-                prepStat.setString(2,values[1]);
-                prepStat.setString(3,values[0]);
+                PreparedStatement prepStat = db.prepareStatement(pStatement, Statement.RETURN_GENERATED_KEYS);
+//                prepStat.setDate(1, Date.valueOf(values[0]));
+                prepStat.setBoolean(1, Boolean.getBoolean(values[0]));
+                prepStat.setString(2, values[1]);
+                prepStat.setDouble(3, Double.parseDouble(values[2]));
 
-                prepStat.setDate(4,Date.valueOf(values[3]));
                 prepStat.executeUpdate();
                 System.out.println("Entry Updated... ");
 
+                ResultSet id = prepStat.getGeneratedKeys();
+                while (id.next()) {
+                    System.out.println("ID:");
+                    System.out.println(id.getInt(1));
+                    returnedId = id.getInt(1);
+                }
+
             }catch (Exception e){
                 System.out.println("SQL Error...");
-                System.out.println(e);
+//                System.out.println(e);
+                e.printStackTrace();
             }
+
+            return returnedId;
         }
+
+    public static int prepUpdateCustomer(String pStatement, String[] values){
+        int returnedId = -1;
+        try{
+            PreparedStatement prepStat = db.prepareStatement(pStatement, Statement.RETURN_GENERATED_KEYS);
+            prepStat.setString(1,values[0]);
+            prepStat.setString(2,values[1]);
+
+            prepStat.executeUpdate();
+            System.out.println("Entry Updated... ");
+
+            ResultSet id = prepStat.getGeneratedKeys();
+            while (id.next()) {
+                System.out.println("ID:");
+                System.out.println(id.getInt(1));
+                returnedId = id.getInt(1);
+            }
+
+        }catch (Exception e){
+            System.out.println("SQL Error...");
+//            System.out.println(e);
+            e.printStackTrace();
+        }
+
+        return returnedId;
+    }
+
+    public static int prepUpdateBooking(String pStatement, String[] values){
+        int returnedId = -1;
+        try{
+            PreparedStatement prepStat = db.prepareStatement(pStatement, Statement.RETURN_GENERATED_KEYS);
+            prepStat.setDate(1, Date.valueOf(values[0]));
+            prepStat.setString(2,values[1]);
+            prepStat.setDate(3, Date.valueOf(values[2]));
+            prepStat.setInt(4,Integer.parseInt(values[3]));
+            prepStat.setInt(5,Integer.parseInt(values[4]));
+            prepStat.setInt(6,Integer.parseInt(values[5]));
+
+
+            prepStat.executeUpdate();
+            System.out.println("Entry Updated... ");
+
+            ResultSet id = prepStat.getGeneratedKeys();
+            while (id.next()) {
+                System.out.println("ID:");
+                System.out.println(id.getInt(1));
+                returnedId = id.getInt(1);
+            }
+
+        }catch (Exception e){
+            System.out.println("SQL Error...");
+//            System.out.println(e);
+            e.printStackTrace();
+        }
+
+        return returnedId;
+    }
+
+//    Dynamic query execute returning the stored id
+    public static int prepUpdate(String pStatement, HashMap<String, String> values) {
+//            https://stackoverflow.com/questions/201887/primary-key-from-inserted-row-jdbc
+            int pos = 1;
+            int returnedId = -1;
+            try {
+                PreparedStatement prepStat = db.prepareStatement(pStatement, Statement.RETURN_GENERATED_KEYS);
+                for (Map.Entry<String, String> entry : values.entrySet()) {
+                    System.out.println(pos);
+                    System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+
+                    switch (entry.getKey()) {
+                        case "string":
+                        case "string2":
+                            prepStat.setString(pos, entry.getValue());
+                            pos++;
+                            break;
+                        case "int":
+                            prepStat.setInt(pos, Integer.parseInt(entry.getValue()));
+                            pos++;
+                            break;
+                        case "double":
+                            System.out.println(Double.valueOf(entry.getValue()));
+                            prepStat.setDouble(pos, Double.parseDouble(entry.getValue()));
+                            pos++;
+                            break;
+                        case "date":
+                            prepStat.setDate(pos, Date.valueOf(entry.getValue()));
+                            pos++;
+                            break;
+                    }
+                }
+                prepStat.executeUpdate();
+                System.out.println("Entry Updated... ");
+                ResultSet id = prepStat.getGeneratedKeys();
+                while (id.next()) {
+                    System.out.println(id.getInt(1));
+                    returnedId = id.getInt(1);
+                }
+//                return returnedId;
+            } catch (Exception e) {
+                System.out.println("SQL Error...");
+                e.printStackTrace();
+            }
+            return returnedId;
+    }
 
         public static ResultSet prepExecute(String pStatment, String value){
             try {

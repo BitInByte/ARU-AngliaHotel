@@ -13,16 +13,21 @@
             fx:controller="HotelAnglia.controllers.ApplicationFormView"
             fx:id="applicationFormWindow">
 
-    <HBox styleClass="center" GridPane.rowIndex="0" GridPane.columnIndex="0"  >
+    <HBox styleClass="center" GridPane.rowIndex="0" GridPane.columnSpan="2"  >
         <Label text="Application Form" styleClass="title" />
     </HBox>
 
-    <Label text="Full Name" styleClass="text" GridPane.rowIndex="1" GridPane.columnIndex="0" />
-    <TextField fx:id="nametf" GridPane.rowIndex="2" GridPane.columnIndex="0" onKeyReleased="#nameValidator" />
-    <Label text="Email" styleClass="text" GridPane.rowIndex="3" GridPane.columnIndex="0" />
-    <TextField fx:id="emailtf" GridPane.rowIndex="4" GridPane.columnIndex="0" onKeyReleased="#checkEmailValidator" />
-    <Label text="Payment Method" styleClass="text" GridPane.rowIndex="5" GridPane.columnIndex="0" />
-    <ComboBox fx:id="paymentcb" GridPane.rowIndex="6" GridPane.columnIndex="0">
+    <Label text="Room Type: " styleClass="text" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+    <Label fx:id="roomtypel" text="" styleClass="text" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+    <Label text="Reservation Date: " styleClass="text" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+    <Label fx:id="reservationdatel" text="" styleClass="text" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+
+    <Label text="Full Name" styleClass="text" GridPane.rowIndex="3" GridPane.columnIndex="0" />
+    <TextField fx:id="nametf" GridPane.rowIndex="4" GridPane.columnSpan="2" onKeyReleased="#nameValidator" />
+    <Label text="Email" styleClass="text" GridPane.rowIndex="5" GridPane.columnIndex="0" />
+    <TextField fx:id="emailtf" GridPane.rowIndex="6" GridPane.columnSpan="2" onKeyReleased="#checkEmailValidator" />
+    <Label text="Payment Method" styleClass="text" GridPane.rowIndex="7" GridPane.columnIndex="0" />
+    <ComboBox fx:id="paymentcb" GridPane.rowIndex="8" GridPane.columnIndex="0">
         <items>
             <FXCollections fx:factory="observableArrayList" >
                 <String fx:value="Card" />
@@ -33,10 +38,10 @@
             <String fx:value="Card" />
         </value>
     </ComboBox>
-    <HBox styleClass="center" GridPane.rowIndex="7" GridPane.columnIndex="0" >
+    <HBox styleClass="center" GridPane.rowIndex="9" GridPane.columnSpan="2" >
         <Label fx:id="errorlb" text="" styleClass="error" />
     </HBox>
-    <HBox styleClass="center" GridPane.rowIndex="8" GridPane.columnIndex="0" >
+    <HBox styleClass="center" GridPane.rowIndex="10" GridPane.columnSpan="2" >
         <Button fx:id="submitbtn" text="Submit" styleClass="normal-button" onAction="#submitHandler" />
         <Button fx:id="backbtn" text="Go Back" styleClass="normal-button" onAction="#closePage" />
     </HBox>

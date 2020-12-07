@@ -136,3 +136,8 @@
     -fx-pref-height: 300px;
     -fx-pref-width: 500px;
 }
+
+#bookingSummary {
+    -fx-pref-width: 600px;
+    -fx-pref-height: 300px;
+}

@@ -16,7 +16,21 @@
             <Label text="Manage Booking" styleClass="title" />
         </HBox>
 
-        <Label text="Here will be the data" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+        <TableView fx:id="bookingstv" styleClass="roomstv" GridPane.rowIndex="1" GridPane.columnIndex="0" onMouseClicked="#bookingManageHandler">
+            <columns>
+                <TableColumn fx:id="bookingId" text="Booking ID" />
+<!--                <TableColumn fx:id="reservationId" text="Booking Reservation Date" />-->
+<!--                <TableColumn fx:id="bookingStatus" text="Booking Status"  />-->
+<!--                <TableColumn fx:id="bookingDate" text="Booking Date" />-->
+<!--                <TableColumn fx:id="bookingTotalPrice" text="Booking Total Price" />-->
+<!--                <TableColumn fx:id="customerName" text="Customer Name" />-->
+<!--                <TableColumn fx:id="customerEmail" text="Customer Email" />-->
+<!--                <TableColumn fx:id="paymentMethod" text="Payment Method" />-->
+<!--                <TableColumn fx:id="paymentDate" text="Payment Date" />-->
+<!--                <TableColumn fx:id="roomId" text="Room ID" />-->
+<!--                <TableColumn fx:id="roomType" text="Room Type" />-->
+            </columns>
+        </TableView>
 
 
         <HBox styleClass="center" GridPane.rowIndex="2" GridPane.columnIndex="0" >

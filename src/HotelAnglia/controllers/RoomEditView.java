@@ -24,6 +24,12 @@ public class RoomEditView {
     private Label roomavailabilityl;
 
     @FXML
+    private Label errorl;
+
+    @FXML
+    private Label roomidl;
+
+    @FXML
     private ComboBox<String> roomavailabilitycb;
 
     @FXML
@@ -57,16 +63,29 @@ public class RoomEditView {
 //    }
 
     public void changeRoomAvailabilityHandler() {
-        this.room.updateRoomAvailability(roomavailabilitycb.getValue());
-        UI ui = new UI();
-        ui.closeUIElement(submitbt);
-//        System.out.println(roomavailabilitycb.getValue());
+        if(!this.room.getAvailability().equals("Reserved")) {
+            this.room.updateRoomAvailability(roomavailabilitycb.getValue());
+        }
+            UI ui = new UI();
+            ui.closeUIElement(submitbt);
+    //        System.out.println(roomavailabilitycb.getValue());
     }
 
     public void initData(Room room) {
         this.room = room;
-        roomiddl.setText(room.getRoom_id());
-        roomavailabilitycb.setValue(room.getAvailability());
+        if(this.room.getAvailability().equals("Reserved")) {
+            roomiddl.setVisible(false);
+            roomavailabilitycb.setVisible(false);
+            roomidl.setVisible(false);
+            roomavailabilityl.setVisible(false);
+            errorl.setVisible(true);
+            submitbt.setText("Go Back");
+
+        } else {
+            roomiddl.setText(Integer.toString(room.getRoom_id()));
+            roomavailabilitycb.setValue(room.getAvailability());
+            errorl.setVisible(false);
+        }
     }
 
     public void setRoomDate(Room room) { this.room = room; }
