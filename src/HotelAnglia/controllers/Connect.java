@@ -134,7 +134,7 @@ public class Connect {
             prepStat.setDate(1, Date.valueOf(values[0]));
             prepStat.setString(2,values[1]);
             prepStat.setDate(3, Date.valueOf(values[2]));
-            prepStat.setInt(4,Integer.parseInt(values[3]));
+            prepStat.setString(4, values[3]);
             prepStat.setInt(5,Integer.parseInt(values[4]));
             prepStat.setInt(6,Integer.parseInt(values[5]));
 

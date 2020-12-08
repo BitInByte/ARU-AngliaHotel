@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="HotelAnglia.controllers.CheckInView">
+    <GridPane alignment="TOP_CENTER" fx:id="checkInWindow">
+        <HBox styleClass="center" GridPane.rowIndex="0" GridPane.columnSpan="2" >
+            <Label text="Check In" styleClass="title" />
+        </HBox>
+
+        <Label text="Available Rooms" styleClass="text" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+        <ComboBox fx:id="availableRoomscb" GridPane.rowIndex="1" GridPane.columnIndex="1">
+        </ComboBox>
+
+        <Label text="Today Bookings" styleClass="text" GridPane.rowIndex="2" GridPane.columnSpan="2" />
+        <TableView fx:id="bookingstv" styleClass="roomstv" GridPane.rowIndex="3" GridPane.columnSpan="2" onMouseClicked="#getRoomNumbers">
+            <columns>
+                <TableColumn fx:id="bookingid" text="Booking ID" />
+                <TableColumn fx:id="customerfullname" text="Customer Full Name" />
+                <TableColumn fx:id="customeremail" text="Customer Email" />
+                <TableColumn fx:id="roomtype" text="Room Type" />
+            </columns>
+        </TableView>
+
+        <HBox styleClass="center" GridPane.rowIndex="4" GridPane.columnSpan="2" >
+            <Button fx:id="submitbtn" text="Check In"  styleClass="normal-button" onAction="#submitCheckInHandler" />
+            <Button fx:id="cancelbtn" text="Cancel"  styleClass="normal-button" />
+        </HBox>
+
+    </GridPane>
+
+    <stylesheets>
+        <URL value="@styles.css" />
+    </stylesheets>
+
+</AnchorPane>

@@ -2,6 +2,7 @@ package HotelAnglia.models;
 
 import HotelAnglia.controllers.Connect;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashMap;
@@ -71,7 +72,13 @@ public class Payment {
 //    Getters
     public double getTotalPrice() { return totalPrice; }
     public int getPaymentId() { return paymentId; }
-    public Date getPaymentDate() { return paymentDate; }
+    public String getPaymentDate() {
+        if(this.paymentDate != null) {
+            return new SimpleDateFormat("dd/MM/yyyy").format(this.paymentDate);
+        } else {
+            return "Not Paid";
+        }
+    }
     public String getPaymentMethod() { return paymentMethod; }
     public Boolean getIsPaid() { return isPaid; }
 

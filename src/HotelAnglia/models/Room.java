@@ -12,6 +12,7 @@ import javafx.collections.ObservableList;
 public class Room {
 
     private int room_id;
+    private String room_number;
     private String availability;
     private String type;
     private double price;
@@ -29,6 +30,15 @@ public class Room {
 
     public Room(int room_id, String availability, String type, double price) {
         this.room_id = room_id;
+//        this.room_number = room_number;
+        this.availability = availability;
+        this.type = type;
+        this.price = price;
+    }
+
+    public Room(int room_id, String room_number, String availability, String type, double price) {
+        this.room_id = room_id;
+        this.room_number = room_number;
         this.availability = availability;
         this.type = type;
         this.price = price;
@@ -124,6 +134,36 @@ public class Room {
         return price;
     }
 
+    public static ArrayList<String> getRoomNumberByType(String type) throws SQLException {
+
+        ArrayList<String> roomNumbersArray = new ArrayList<>();
+
+        String query = "SELECT room_number FROM room WHERE type = '" + type + "' AND availability = 'Available';";
+        ResultSet results = Connect.sqlExecute(query);
+
+        while (results.next()) {
+            for (int i = 1; i <= results.getMetaData().getColumnCount(); i++) {
+                System.out.println(results.getString(i));
+                roomNumbersArray.add(results.getString(i));
+            }
+        }
+
+        return roomNumbersArray;
+    }
+
+    public static Room getRoomByRoomNumber(String roomNumber) throws SQLException {
+        Room room = null;
+
+        String query = "SELECT * FROM room WHERE room_number = '" + roomNumber + "';";
+        ResultSet results = Connect.sqlExecute(query);
+
+        while (results.next()) {
+            room = new Room(results.getInt("room_id"), results.getString("room_number"), results.getString("availability"), results.getString("type"), results.getDouble("price"));
+        }
+
+        return room;
+    }
+
     public static void updateRoomPrice(Double newPrice, String type) {
         String query = "UPDATE room SET price = '" + newPrice + "' WHERE type = '" + type + "';";
         Connect.sqlUpdate(query);
@@ -146,4 +186,6 @@ public class Room {
     public String getType() { return this.type; }
     public String getAvailability() { return this.availability; }
     public double getPrice() { return this.price; }
+
+    public String getRoom_number() { return room_number; }
 }

@@ -12,8 +12,8 @@
             <Menu text="Bookings">
                 <items>
                     <MenuItem onAction="#pushManageBookingsView" text="Manage Bookings" />
-                    <MenuItem text="Check-in" />
-                    <MenuItem text="Check-out" />
+                    <MenuItem onAction="#pushCheckInView" text="Check-in" />
+                    <MenuItem onAction="#pushCheckOutView" text="Check-out" />
                 </items>
             </Menu>
             <Menu text="Rooms">

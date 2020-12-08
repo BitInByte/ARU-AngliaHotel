@@ -9,6 +9,7 @@ import java.io.IOException;
 
 public class ManagementView {
 
+
     @FXML
     private GridPane rootPane;
 
@@ -33,12 +34,14 @@ public class ManagementView {
 
     }
 
-    public void pushCheckInView() {
-
+    public void pushCheckInView() throws IOException {
+        UI UI = new UI();
+        UI.changePane(rootPane, "checkInView");
     }
 
-    public void pushCheckOutView() {
-
+    public void pushCheckOutView() throws IOException {
+        UI UI = new UI();
+        UI.changePane(rootPane, "checkOutView");
     }
 
     public void pushRepostView() {

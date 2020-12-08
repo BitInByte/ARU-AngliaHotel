@@ -141,3 +141,18 @@
     -fx-pref-width: 600px;
     -fx-pref-height: 300px;
 }
+
+#checkInWindow {
+    -fx-pref-width: 600px;
+    -fx-pref-height: 400px;
+}
+
+#checkOutWindow {
+    -fx-pref-width: 600px;
+    -fx-pref-height: 400px;
+}
+
+#errorWindow {
+    -fx-pref-width: 600px;
+    -fx-pref-height: 400px;
+}

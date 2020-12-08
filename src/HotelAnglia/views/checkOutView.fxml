@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="HotelAnglia.controllers.CheckOutView">
+
+    <GridPane alignment="TOP_CENTER" fx:id="checkOutWindow">
+        <HBox styleClass="center" GridPane.rowIndex="0" GridPane.columnIndex="0" >
+            <Label text="Check Out" styleClass="title" />
+        </HBox>
+
+        <Label text="Bookings to check out" styleClass="text" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+        <TableView fx:id="bookingstv" styleClass="roomstv" GridPane.rowIndex="3" GridPane.columnIndex="0" onMouseClicked="#buttonEnableHandler">
+            <columns>
+                <TableColumn fx:id="bookingid" text="Booking ID" />
+                <TableColumn fx:id="customerfullname" text="Customer Full Name" />
+                <TableColumn fx:id="customeremail" text="Customer Email" />
+                <TableColumn fx:id="checkinDate" text="Check In Date" />
+                <TableColumn fx:id="roomtype" text="Room Type" />
+                <TableColumn fx:id="roomnumber" text="Room Number" />
+            </columns>
+        </TableView>
+
+        <HBox styleClass="center" GridPane.rowIndex="4" GridPane.columnIndex="0" >
+            <Button fx:id="submitbtn" text="Check Out"  styleClass="normal-button" onAction="#checkOutHandler" />
+            <Button fx:id="cancelbtn" text="Cancel"  styleClass="normal-button" />
+        </HBox>
+
+    </GridPane>
+
+    <stylesheets>
+        <URL value="@styles.css" />
+    </stylesheets>
+
+
+</AnchorPane>

@@ -116,11 +116,11 @@ public class ApplicationFormView {
         Customer newCustomer = new Customer(this.nametf.getText(), this.emailtf.getText());
         newCustomer.createNewCustomer();
 //        Create new booking
-        Booking newBooking = new Booking(this.reservationDate, availableRoom.getRoom_id(), newCustomer.getCustomerId(), newPayment.getPaymentId());
+        Booking newBooking = new Booking(this.reservationDate, newCustomer, newPayment, this.roomType);
         newBooking.createNewBooking();
 //        System.out.println(newPayment.getPaymentId());
 //        Reserve Room
-        availableRoom.reserveRoom();
+//        availableRoom.reserveRoom();
 
 //        Open Booking Summary Page
         //        Load new window and controller
