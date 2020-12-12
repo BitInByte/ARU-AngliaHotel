@@ -7,6 +7,9 @@ import javafx.scene.control.Label;
 public class BookingSummary {
 
     @FXML
+    private Label bookingidl;
+
+    @FXML
     private Label roomTypel;
 
     @FXML
@@ -29,7 +32,8 @@ public class BookingSummary {
         ui.closeUIElement(closepagebt);
     }
 
-    public void initData(String roomType, String reservationDate, String fullName, String email, String paymentMethod) {
+    public void initData(int roomID, String roomType, String reservationDate, String fullName, String email, String paymentMethod) {
+        this.bookingidl.setText(Integer.toString(roomID));
         this.roomTypel.setText(roomType);
         this.reservationDatel.setText(reservationDate);
         this.fullNamel.setText(fullName);

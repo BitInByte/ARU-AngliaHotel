@@ -1,5 +1,11 @@
 package HotelAnglia.controllers;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.sql.*;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -18,7 +24,7 @@ public class Connect {
             try {
                 Connection db = DriverManager.getConnection(postgresqlpath, userName, password);
                 Statement sqlStat = db.createStatement();
-                sqlStat.executeUpdate("CREATE DATABASE HotelAnglia;");
+                sqlStat.executeUpdate("CREATE DATABASE 'HotelAnglia'");
                 db.close();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -231,5 +237,7 @@ public class Connect {
                 System.out.println("Error In Printing");
             }
         }
+
+
 
     }

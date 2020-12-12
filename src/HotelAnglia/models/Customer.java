@@ -39,6 +39,16 @@ public class Customer {
         }
     }
 
+    public void updateCustomerName() {
+        String query = "UPDATE customer SET full_name = '" + this.fullName + "' WHERE customer_id = " + this.customerId + ";";
+        Connect.sqlUpdate(query);
+    }
+
+    public void updateCustomerEmail() {
+        String query = "UPDATE customer SET email = '" + this.email + "' WHERE customer_id = " + this.customerId + ";";
+        Connect.sqlUpdate(query);
+    }
+
     public int getCustomerId() { return customerId; }
     public String getEmail() { return email; }
     public String getFullName() { return fullName; }

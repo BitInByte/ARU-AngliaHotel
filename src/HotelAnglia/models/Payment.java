@@ -62,6 +62,12 @@ public class Payment {
         }
     }
 
+    public void updatePaymentTotalPriceById() {
+        String query = "UPDATE payment SET total_price = " + this.totalPrice + " WHERE payment_id = " + this.paymentId + ";";
+        System.out.println(query);
+        Connect.sqlUpdate(query);
+    }
+
 //    Setters
     public void setPaymentDate(Date paymentDate) { this.paymentDate = paymentDate; }
     public void setPaymentId(int paymentId) { this.paymentId = paymentId; }

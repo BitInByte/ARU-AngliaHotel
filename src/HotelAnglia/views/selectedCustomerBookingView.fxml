@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.*?>
+
+<GridPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="HotelAnglia.controllers.SelectedCustomerBookingView"
+            fx:id="selectedCustomerBookingWindow">
+
+    <HBox styleClass="center" GridPane.rowIndex="0" GridPane.columnSpan="2" >
+        <Label fx:id="bookingidl" text="" styleClass="title" />
+    </HBox>
+
+    <Label text="Customer Name: " styleClass="text" GridPane.rowIndex="1" GridPane.columnSpan="2" />
+    <TextField fx:id="customernametf" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+    <Label text="Customer Email: " styleClass="text" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+    <TextField fx:id="customeremailtf" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+    <Label text="Room Type: " styleClass="text" GridPane.rowIndex="3" GridPane.columnIndex="0" />
+    <Label fx:id="roomtypel" text="" styleClass="text" GridPane.rowIndex="3" GridPane.columnIndex="1" />
+    <Label text="Reservation Status: " styleClass="text" GridPane.rowIndex="4" GridPane.columnIndex="0" />
+    <Label fx:id="reservationstatusl" text="" styleClass="text" GridPane.rowIndex="4" GridPane.columnIndex="1" />
+    <Label text="Reservation Date: " styleClass="text" GridPane.rowIndex="5" GridPane.columnIndex="0" />
+<!--    <Label fx:id="reservationdatel" text="" styleClass="text" GridPane.rowIndex="5" GridPane.columnIndex="1" />-->
+    <DatePicker fx:id="reservationdatedp" GridPane.rowIndex="5" GridPane.columnIndex="1" />
+
+
+    <HBox styleClass="center" GridPane.rowIndex="6" GridPane.columnSpan="2" >
+        <Button fx:id="submitchangesbtn" text="Submit Changes" styleClass="normal-button" onAction="#submitChangesHandler" />
+        <Button fx:id="cancelbtn" text="Cancel Booking" styleClass="normal-button" onAction="#cancelBookingHandler" />
+        <Button fx:id="closebtn" text="Go Back" styleClass="normal-button" onAction="#closePageHandler" />
+    </HBox>
+
+    <stylesheets>
+        <URL value="@styles.css" />
+    </stylesheets>
+
+</GridPane>

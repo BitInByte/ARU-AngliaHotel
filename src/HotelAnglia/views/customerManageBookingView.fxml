@@ -24,7 +24,8 @@
     </HBox>
 
     <HBox styleClass="center" GridPane.rowIndex="4" GridPane.columnIndex="0" >
-        <Button fx:id="submitbtn" text="Manage Booking" styleClass="normal-button" onAction="#submitHandler" />
+        <Button fx:id="changebookingbtn" text="Change Booking" styleClass="normal-button" onAction="#submitHandler" />
+        <Button fx:id="addservicebtn" text="Add Service" styleClass="normal-button" onAction="#addServiceHandler" />
         <Button fx:id="backbtn" text="Go Back" styleClass="normal-button" onAction="#closePage" />
     </HBox>
 

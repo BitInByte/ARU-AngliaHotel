@@ -7,11 +7,13 @@ import javafx.collections.ObservableList;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Booking {
 
     private int bookingId;
     private LocalDate reservationDate;
+    private LocalDate checkoutDate;
     private LocalDate bookingDate;
     private String status;
     private String roomType;
@@ -21,6 +23,7 @@ public class Booking {
     private Room room;
     private Payment payment;
     private Customer customer;
+    private ArrayList<Service> services;
 
     public Booking() {}
 
@@ -130,13 +133,50 @@ public class Booking {
         return results;
     }
 
+    public void getBookingById(int bookingID) throws SQLException {
+        String query = "SELECT * FROM booking as b INNER JOIN customer as c ON b.customer_id = c.customer_id INNER JOIN payment as p ON b.payment_id = p.payment_id WHERE b.booking_id = " + bookingID + ";";
+        System.out.println(query);
+        ResultSet result = Connect.sqlExecute(query);
+//        Connect.resultPrinter(result);
+        while (result.next()) {
+            this.payment = new Payment(result.getInt("payment_id"), result.getDate("date"), result.getBoolean("ispaid"), result.getString("payment_method"), result.getDouble("total_price"));
+            this.customer = new Customer(result.getInt("customer_id"), result.getString("full_name"), result.getString("email"));
+//            room = new Room(results.getInt("room_id"), results.getString("availability"), results.getString("type"), results.getDouble("price"));
+//            int bookingId, LocalDate reservationDate, LocalDate bookingDate, String status, Room room, Payment payment, Customer customer
+            this.bookingId = result.getInt("booking_id");
+            this.reservationDate = result.getDate("reservation_date").toLocalDate();
+            this.bookingDate = result.getDate("booking_date").toLocalDate();
+            this.status = result.getString("status");
+            this.roomType = result.getString("room_type");
+//            booking = new Booking(result.getInt("booking_id"), result.getDate("reservation_date").toLocalDate(), results.getDate("booking_date").toLocalDate(), results.getString("status"), results.getString("room_type"),payment, customer);
+        }
+    }
+
     public void approveBooking() {
         String query = "UPDATE booking SET status = 'Approved' WHERE booking_id = " + this.bookingId + ";";
         System.out.println(query);
         Connect.sqlUpdate(query);
     }
 
-    public void checkIn(Room room) {
+    public void updateReservationDateById() {
+        String query = "UPDATE booking SET reservation_date = '" + this.reservationDate + "' WHERE booking_id = " + this.bookingId + ";";
+        System.out.println(query);
+        Connect.sqlUpdate(query);
+    }
+
+    public void updateCheckOutDateById() {
+        String query = "UPDATE booking SET checkout_date = '" + this.checkoutDate + "' WHERE booking_id = " + this.bookingId + ";";
+        System.out.println(query);
+        Connect.sqlUpdate(query);
+    }
+
+    public void cancelReservationById() {
+        String query = "UPDATE booking SET status = 'Canceled' WHERE booking_id = " + this.bookingId + ";";
+        System.out.println(query);
+        Connect.sqlUpdate(query);
+    }
+
+    public void checkInById(Room room) {
         if(!this.status.equals("Checked-In")) {
             System.out.println(this.status);
             this.room = room;
@@ -145,6 +185,10 @@ public class Booking {
             String query = "UPDATE booking SET status = '" + this.status + "', room_id = " + this.room.getRoom_id() +" WHERE booking_id = " + this.bookingId + ";";
             Connect.sqlUpdate(query);
         }
+    }
+
+    public void checkOutById() {
+        System.out.println("checking out");
     }
 
     public ObservableList<Booking> listAllBookings() throws SQLException {
@@ -224,6 +268,9 @@ public class Booking {
 
     public int getBookingId() { return bookingId; }
     public LocalDate getReservationDate() { return reservationDate; }
+
+    public LocalDate getCheckoutDate() { return checkoutDate; }
+
     public LocalDate getBookingDate() { return bookingDate; }
     public String getStatus() { return status; }
 //    public int getRoomId() { return roomId; }
@@ -233,16 +280,20 @@ public class Booking {
     public Payment getPayment() { return payment; }
     public Room getRoom() { return room; }
     public String getRoomType() { return this.roomType; }
+    public ArrayList<Service> getServices() { return services; }
 
     public void setBookingId(int bookingId) { this.bookingId = bookingId; }
     public void setReservationDate(LocalDate reservationDate) { this.reservationDate = reservationDate; }
+
+    public void setCheckoutDate(LocalDate checkoutDate) { this.checkoutDate = checkoutDate; }
+
     public void setBookingDate(LocalDate bookingDate) { this.bookingDate = bookingDate; }
     public void setStatus(String status) { this.status = status; }
     public void setRoom(Room room) { this.room = room; }
     public void setCustomer(Customer customer) { this.customer = customer; }
     public void setPayment(Payment payment) { this.payment = payment; }
     public void setRoomType(String roomType) { this.roomType = roomType; }
-
+    public void setServices(ArrayList<Service> service) { this.services = service; }
     //    public void setRoomId(int roomId) { this.roomId = roomId; }
 //    public void setCustomerId(int customerId) { this.customerId = customerId; }
 //    public void setPaymentId(int paymentId) { this.paymentId = paymentId; }

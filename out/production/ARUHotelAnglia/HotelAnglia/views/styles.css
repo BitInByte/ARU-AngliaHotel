@@ -156,3 +156,28 @@
     -fx-pref-width: 600px;
     -fx-pref-height: 400px;
 }
+
+#successWindow {
+    -fx-pref-width: 600px;
+    -fx-pref-height: 400px;
+}
+
+#selectedCustomerBookingWindow {
+    -fx-pref-width: 600px;
+    -fx-pref-height: 300px;
+}
+
+#addNewServiceWindow {
+    -fx-pref-width: 600px;
+    -fx-pref-height: 300px;
+}
+
+#bookingPaymentWindow {
+    -fx-pref-width: 600px;
+    -fx-pref-height: 400px;
+}
+
+#customerBillWindow {
+    -fx-pref-width: 600px;
+    -fx-pref-height: 400px;
+}

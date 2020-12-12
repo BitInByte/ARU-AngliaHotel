@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.*?>
+
+<GridPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="HotelAnglia.controllers.SuccessView"
+            fx:id="successWindow">
+
+    <HBox styleClass="center" GridPane.rowIndex="0" GridPane.columnIndex="0"  >
+        <Label text="Success" styleClass="title" />
+    </HBox>
+
+    <Label text="" styleClass="text" fx:id="errorl" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+
+    <HBox styleClass="center" GridPane.rowIndex="2" GridPane.columnSpan="2"  >
+        <Button text="Close" fx:id="closepagebt" styleClass="normal-button" onAction="#closePage" />
+    </HBox>
+
+    <stylesheets>
+        <URL value="@styles.css" />
+    </stylesheets>
+
+</GridPane>

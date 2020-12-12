@@ -118,6 +118,8 @@ public class ApplicationFormView {
 //        Create new booking
         Booking newBooking = new Booking(this.reservationDate, newCustomer, newPayment, this.roomType);
         newBooking.createNewBooking();
+        System.out.println("New Booking ID");
+        System.out.println(newBooking.getBookingId());
 //        System.out.println(newPayment.getPaymentId());
 //        Reserve Room
 //        availableRoom.reserveRoom();
@@ -132,7 +134,7 @@ public class ApplicationFormView {
 //        Push new data to the next controller
         BookingSummary controller = loader.getController();
 //        controller.initData("It works!");
-        controller.initData(availableRoom.getType(), newBooking.getReservationDate().toString(), newCustomer.getFullName(), newCustomer.getEmail(), newPayment.getPaymentMethod());
+        controller.initData(newBooking.getBookingId(), availableRoom.getType(), newBooking.getReservationDate().toString(), newCustomer.getFullName(), newCustomer.getEmail(), newPayment.getPaymentMethod());
 
 //        Open new window
         Stage stage = new Stage();

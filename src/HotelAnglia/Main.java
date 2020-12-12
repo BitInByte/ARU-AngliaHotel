@@ -59,7 +59,7 @@ public class Main extends Application {
         Connect.sqlUpdate(serviceTable);
         String paymentTable = "CREATE TABLE payment (payment_id SERIAL PRIMARY KEY, date DATE, isPaid BOOLEAN NOT NULL, payment_method VARCHAR(30) NOT NULL, total_price DOUBLE PRECISION NOT NULL);";
         Connect.sqlUpdate(paymentTable);
-        String bookingTable = "CREATE TABLE booking (booking_id SERIAL PRIMARY KEY, reservation_date DATE NOT NULL, status VARCHAR(30) NOT NULL, room_type VARCHAR(30) NOT NULL, booking_date DATE NOT NULL, room_id INTEGER, customer_id INTEGER NOT NULL, payment_id INTEGER NOT NULL, FOREIGN KEY (room_id) REFERENCES room(room_id) ON UPDATE CASCADE ON DELETE CASCADE, FOREIGN KEY (customer_id) REFERENCES customer(customer_id) ON UPDATE RESTRICT ON DELETE RESTRICT, FOREIGN KEY (payment_id) REFERENCES payment(payment_id) ON UPDATE CASCADE ON DELETE CASCADE);";
+        String bookingTable = "CREATE TABLE booking (booking_id SERIAL PRIMARY KEY, reservation_date DATE NOT NULL, checkout_date DATE, status VARCHAR(30) NOT NULL, room_type VARCHAR(30) NOT NULL, booking_date DATE NOT NULL, room_id INTEGER, customer_id INTEGER NOT NULL, payment_id INTEGER NOT NULL, FOREIGN KEY (room_id) REFERENCES room(room_id) ON UPDATE CASCADE ON DELETE CASCADE, FOREIGN KEY (customer_id) REFERENCES customer(customer_id) ON UPDATE RESTRICT ON DELETE RESTRICT, FOREIGN KEY (payment_id) REFERENCES payment(payment_id) ON UPDATE CASCADE ON DELETE CASCADE);";
         Connect.sqlUpdate(bookingTable);
         String serviceList = "CREATE TABLE service_list (service_id INTEGER NOT NULL, booking_id INTEGER NOT NULL, PRIMARY KEY (service_id, booking_id), FOREIGN KEY (service_id) REFERENCES service(service_id) ON UPDATE RESTRICT ON DELETE RESTRICT, FOREIGN KEY (booking_id) REFERENCES booking(booking_id) ON UPDATE CASCADE ON DELETE CASCADE);";
         Connect.sqlUpdate(serviceList);
@@ -106,6 +106,22 @@ public class Main extends Application {
             pos++;
             Connect.sqlUpdate(roomDataQuery);
         }
+
+        String foodService = "INSERT INTO service (service_id, type, price) VALUES (1, 'Food', 14.99)";
+        Connect.sqlUpdate(foodService);
+
+        String beverageService = "INSERT INTO service (service_id, type, price) VALUES (2, 'Beverage', 7.50)";
+        Connect.sqlUpdate(beverageService);
+
+        String spaService = "INSERT INTO service (service_id, type, price) VALUES (3, 'SPA', 49.99)";
+        Connect.sqlUpdate(spaService);
+
+        String taxiService = "INSERT INTO service (service_id, type, price) VALUES (4, 'Taxi', 100)";
+        Connect.sqlUpdate(taxiService);
+
+        String customService = "INSERT INTO service (service_id, type, price) VALUES (5, 'Custom', 75)";
+        Connect.sqlUpdate(customService);
+
 
 //        String singleRoom = "INSERT INTO room (room_id, type, availability, price) VALUES (1, Single, 'Available', 30);";
 //        Connect.sqlUpdate(singleRoom);

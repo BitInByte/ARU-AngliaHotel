@@ -30,6 +30,41 @@ public class UI {
         }
     }
 
+//    Create an error element
+    public void showErrorView(String error) throws IOException {
+//        System.out.println("Booking not found, show an error");
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(UI.class.getResource("/HotelAnglia/views/errorView.fxml"));
+        Parent pushingWindow = loader.load();
+        Scene pushingWindowScene = new Scene(pushingWindow);
+
+        ErrorView controller = loader.getController();
+        controller.initData(error);
+
+        Stage stage = new Stage();
+        stage.setTitle("Error");
+        stage.setScene(pushingWindowScene);
+        stage.setResizable(false);
+        stage.show();
+    }
+
+    public void showSuccessView(String message) throws IOException {
+        System.out.println("Booking not found, show an error");
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(UI.class.getResource("/HotelAnglia/views/successView.fxml"));
+        Parent pushingWindow = loader.load();
+        Scene pushingWindowScene = new Scene(pushingWindow);
+
+        SuccessView controller = loader.getController();
+        controller.initData(message);
+
+        Stage stage = new Stage();
+        stage.setTitle("Success");
+        stage.setScene(pushingWindowScene);
+        stage.setResizable(false);
+        stage.show();
+    }
+
 //    Close the current element
     public void closeUIElement(Button button) {
         Stage stage = (Stage) button.getScene().getWindow();

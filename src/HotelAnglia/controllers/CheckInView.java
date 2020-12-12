@@ -52,7 +52,7 @@ public class CheckInView {
         Room selectedRoom = Room.getRoomByRoomNumber(availableRoomscb.getValue().toString());
 //        selectedBooking.setRoom(selectedRoom);
 //        Proceed to the booking check in
-        selectedBooking.checkIn(selectedRoom);
+        selectedBooking.checkInById(selectedRoom);
 //        Update the table view
         this.listTodaysBookings();
 //        Emptying combo box

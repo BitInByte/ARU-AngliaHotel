@@ -30,7 +30,7 @@
 
         <HBox styleClass="center" GridPane.rowIndex="4" GridPane.columnIndex="0" >
             <Button fx:id="submitbtn" text="Check Out"  styleClass="normal-button" onAction="#checkOutHandler" />
-            <Button fx:id="cancelbtn" text="Cancel"  styleClass="normal-button" />
+            <Button fx:id="cancelbtn" text="Close"  styleClass="normal-button" onAction="#closePageHandler" />
         </HBox>
 
     </GridPane>
