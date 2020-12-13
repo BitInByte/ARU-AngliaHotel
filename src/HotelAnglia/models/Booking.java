@@ -117,6 +117,13 @@ public class Booking {
         return results;
     }
 
+    public ResultSet getAllNotDeletedBookings() {
+        String query = "SELECT * FROM booking as b INNER JOIN customer as c ON b.customer_id = c.customer_id INNER JOIN payment as p ON b.payment_id = p.payment_id WHERE NOT b.status='Canceled' ORDER BY booking_id ASC;";
+        System.out.println(query);
+        ResultSet results = Connect.sqlExecute(query);
+        return results;
+    }
+
     public ResultSet getAllTodaysBookings() {
         String query = "SELECT * FROM booking as b INNER JOIN customer as c ON b.customer_id = c.customer_id INNER JOIN payment as p ON b.payment_id = p.payment_id WHERE b.reservation_date = CURRENT_DATE AND NOT b.status = 'Checked-In' ORDER BY booking_id ASC;";
         System.out.println(query);
@@ -236,6 +243,28 @@ public class Booking {
         System.out.println(bookingsList);
         return bookingsList;
     }
+
+    public ObservableList<Booking> listAllNotDeleteBookings() throws SQLException {
+        ResultSet results = this.getAllNotDeletedBookings();
+
+        Booking booking;
+        Payment payment;
+        Customer customer;
+        ObservableList<Booking> bookingsList = FXCollections.observableArrayList();
+//        To Loop through results again is should be at the start. Since it is looping now, it will stop at the end
+//        A reset iteration should be performed to be able to loop through it again
+        while (results.next()) {
+            payment = new Payment(results.getInt("payment_id"), results.getDate("date"), results.getBoolean("ispaid"), results.getString("payment_method"), results.getDouble("total_price"));
+            customer = new Customer(results.getInt("customer_id"), results.getString("full_name"), results.getString("email"));
+            booking = new Booking(results.getInt("booking_id"), results.getDate("reservation_date").toLocalDate(), results.getDate("booking_date").toLocalDate(), results.getString("status"), results.getString("room_type"),payment, customer);
+            bookingsList.add(booking);
+        }
+
+        System.out.println("Booking List");
+        System.out.println(bookingsList);
+        return bookingsList;
+    }
+
 
     public ObservableList<Booking> listAllTodaysBookings() throws SQLException {
         ResultSet results = this.getAllTodaysBookings();

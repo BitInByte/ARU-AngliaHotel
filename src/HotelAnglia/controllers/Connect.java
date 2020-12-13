@@ -25,7 +25,7 @@ public class Connect {
                 Connection db = DriverManager.getConnection(postgresqlpath, userName, password);
                 Statement sqlStat = db.createStatement();
                 sqlStat.executeUpdate("CREATE DATABASE 'HotelAnglia'");
-                db.close();
+//                db.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -49,6 +49,7 @@ public class Connect {
                 Statement sqlStat = db.createStatement();
                 sqlStat.executeUpdate(statement);
                 System.out.println("SQL Statement Updated Successfully...");
+//                db.close();
             }catch (Exception e){
                 System.out.println("SQL Error...");
             }
@@ -59,6 +60,7 @@ public class Connect {
                 Statement sqlStat = db.createStatement();
                 ResultSet rs = sqlStat.executeQuery(statement);
                 System.out.println("SQL Statement Executed Successfully...");
+//                db.close();
                 return rs;
 
             }catch (Exception e){
@@ -97,6 +99,7 @@ public class Connect {
                     System.out.println(id.getInt(1));
                     returnedId = id.getInt(1);
                 }
+//                db.close();
 
             }catch (Exception e){
                 System.out.println("SQL Error...");
@@ -124,6 +127,7 @@ public class Connect {
                 returnedId = id.getInt(1);
             }
 
+//            db.close();
         }catch (Exception e){
             System.out.println("SQL Error...");
 //            System.out.println(e);
@@ -155,6 +159,7 @@ public class Connect {
                 returnedId = id.getInt(1);
             }
 
+//            db.close();
         }catch (Exception e){
             System.out.println("SQL Error...");
 //            System.out.println(e);
@@ -217,6 +222,7 @@ public class Connect {
                 prepStat.setString(1,value);
                 ResultSet rs = prepStat.executeQuery();
                 System.out.println("Query Executed...");
+//                db.close();
                 return rs;
             }catch (Exception e){
                 System.out.println("SQL Error...");

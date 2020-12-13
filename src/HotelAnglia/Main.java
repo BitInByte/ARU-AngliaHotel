@@ -49,7 +49,7 @@ public class Main extends Application {
         String cryptoEnable = "CREATE EXTENSION pgcrypto;";
         Connect.sqlUpdate(cryptoEnable);
 //        Create tables
-        String accountTable = "CREATE TABLE management_user (account_id SERIAL PRIMARY KEY, username VARCHAR(30) NOT NULL, password TEXT NOT NULL);";
+        String accountTable = "CREATE TABLE management_user (account_id SERIAL PRIMARY KEY, username VARCHAR(30) NOT NULL, password TEXT NOT NULL, CONSTRAINT username_unique UNIQUE(username));";
         Connect.sqlUpdate(accountTable);
         String customerTable = "CREATE TABLE customer (customer_id SERIAL, full_name VARCHAR(80) NOT NULL, email VARCHAR(80) NOT NULL, PRIMARY KEY (customer_id));";
         Connect.sqlUpdate(customerTable);
@@ -61,7 +61,7 @@ public class Main extends Application {
         Connect.sqlUpdate(paymentTable);
         String bookingTable = "CREATE TABLE booking (booking_id SERIAL PRIMARY KEY, reservation_date DATE NOT NULL, checkout_date DATE, status VARCHAR(30) NOT NULL, room_type VARCHAR(30) NOT NULL, booking_date DATE NOT NULL, room_id INTEGER, customer_id INTEGER NOT NULL, payment_id INTEGER NOT NULL, FOREIGN KEY (room_id) REFERENCES room(room_id) ON UPDATE CASCADE ON DELETE CASCADE, FOREIGN KEY (customer_id) REFERENCES customer(customer_id) ON UPDATE RESTRICT ON DELETE RESTRICT, FOREIGN KEY (payment_id) REFERENCES payment(payment_id) ON UPDATE CASCADE ON DELETE CASCADE);";
         Connect.sqlUpdate(bookingTable);
-        String serviceList = "CREATE TABLE service_list (service_id INTEGER NOT NULL, booking_id INTEGER NOT NULL, PRIMARY KEY (service_id, booking_id), FOREIGN KEY (service_id) REFERENCES service(service_id) ON UPDATE RESTRICT ON DELETE RESTRICT, FOREIGN KEY (booking_id) REFERENCES booking(booking_id) ON UPDATE CASCADE ON DELETE CASCADE);";
+        String serviceList = "CREATE TABLE service_list (service_list_id SERIAL PRIMARY KEY, service_id INTEGER NOT NULL, booking_id INTEGER NOT NULL, FOREIGN KEY (service_id) REFERENCES service(service_id) ON UPDATE RESTRICT ON DELETE RESTRICT, FOREIGN KEY (booking_id) REFERENCES booking(booking_id) ON UPDATE CASCADE ON DELETE CASCADE);";
         Connect.sqlUpdate(serviceList);
 
 

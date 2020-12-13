@@ -6,10 +6,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -35,6 +32,9 @@ public class CheckInView {
     private ComboBox availableRoomscb;
 
     @FXML
+    private Button cancelbtn;
+
+    @FXML
     public void initialize() throws SQLException {
         this.listTodaysBookings();
     }
@@ -57,6 +57,11 @@ public class CheckInView {
         this.listTodaysBookings();
 //        Emptying combo box
         this.availableRoomscb.getItems().clear();
+    }
+
+    public void closePage() {
+        UI UI = new UI();
+        UI.closeUIElement(this.cancelbtn);
     }
 
     private void listRooms(String type) throws SQLException {

@@ -10,13 +10,16 @@
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="HotelAnglia.controllers.ManageBookingView">
-    <GridPane alignment="TOP_CENTER" fx:id="manageBookingWindow">
+    <GridPane fx:id="manageBookingWindow">
 
-        <HBox styleClass="center" GridPane.rowIndex="0" GridPane.columnIndex="0"  >
+        <HBox styleClass="center" GridPane.rowIndex="0" GridPane.columnSpan="2" >
             <Label text="Manage Booking" styleClass="title" />
         </HBox>
 
-        <TableView fx:id="bookingstv" styleClass="roomstv" GridPane.rowIndex="1" GridPane.columnIndex="0" onMouseClicked="#bookingManageHandler">
+        <Label text="Show Deleted Bookings: " styleClass="text" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+        <CheckBox fx:id="showdeletedbookingcb" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+
+        <TableView fx:id="bookingstv" styleClass="roomstv" GridPane.rowIndex="2" GridPane.columnSpan="2" onMouseClicked="#bookingManageHandler">
             <columns>
                 <TableColumn fx:id="bookingId" text="Booking ID" />
                 <TableColumn fx:id="reservationId" text="Booking Reservation Date" />
@@ -34,11 +37,11 @@
         </TableView>
 
 
-        <HBox styleClass="center" GridPane.rowIndex="2" GridPane.columnIndex="0" >
+        <HBox styleClass="center" GridPane.rowIndex="3" GridPane.columnSpan="2" >
             <Button fx:id="approvebtn" text="Approve"  styleClass="normal-button" onAction="#approveBookingHandler" />
-            <Button fx:id="modifybtn" text="Modify"  styleClass="normal-button" />
-            <Button fx:id="managebtn" text="Manage"  styleClass="normal-button" />
-            <Button fx:id="deletebtn" text="Delete"  styleClass="normal-button" />
+            <Button fx:id="modifybtn" text="Modify"  styleClass="normal-button" onAction="#modifyBookingHandler" />
+<!--            <Button fx:id="managebtn" text="Manage"  styleClass="normal-button" />-->
+            <Button fx:id="deletebtn" text="Delete"  styleClass="normal-button" onAction="#deleteBookingHandler" />
         </HBox>
 
     </GridPane>

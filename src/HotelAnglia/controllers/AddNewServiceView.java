@@ -16,7 +16,7 @@ public class AddNewServiceView {
     private Booking selectedBooking;
 
     @FXML
-    private Label bookingidl;
+    private Label customerl;
 
     @FXML
     private ComboBox<String> servicecb;
@@ -33,7 +33,8 @@ public class AddNewServiceView {
 //        Store the selected booking provided by the last window
         this.selectedBooking = selectedBooking;
 //        Set booking id text on the label
-        this.bookingidl.setText(Integer.toString(this.selectedBooking.getBookingId()));
+//        this.bookingidl.setText(Integer.toString(this.selectedBooking.getBookingId()));
+        this.customerl.setText(selectedBooking.getCustomer().getFullName());
 //        Add all service types to the combo box
         this.servicecb.getItems().addAll(Service.getServiceTypes());
 

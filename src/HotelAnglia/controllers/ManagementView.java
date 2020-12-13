@@ -17,42 +17,50 @@ public class ManagementView {
 //        AnchorPane pane = FXMLLoader.load(getClass().getResource("/HotelAnglia/views/manageBookingView.fxml"));
 //        rootPane.getChildren().setAll(pane);
         UI UI = new UI();
-        UI.changePane(rootPane, "manageBookingView");
+        UI.changePane(this.rootPane, "manageBookingView");
     }
 
     public void pushManageRoomsView() throws IOException {
         UI UI = new UI();
-        UI.changePane(rootPane, "manageRoomView");
+        UI.changePane(this.rootPane, "manageRoomView");
     }
 
     public void pushManageRoomsPriceView() throws IOException {
         UI UI = new UI();
-        UI.changePane(rootPane, "manageRoomPriceView");
+        UI.changePane(this.rootPane, "manageRoomPriceView");
     }
 
-    public void pushManageServicesView() {
-
+    public void pushManageServicesView() throws IOException {
+        UI UI = new UI();
+        UI.changePane(this.rootPane, "orderServiceView");
     }
 
     public void pushCheckInView() throws IOException {
         UI UI = new UI();
-        UI.changePane(rootPane, "checkInView");
+        UI.changePane(this.rootPane, "checkInView");
     }
 
     public void pushCheckOutView() throws IOException {
         UI UI = new UI();
-        UI.changePane(rootPane, "checkOutView");
+        UI.changePane(this.rootPane, "checkOutView");
     }
 
-    public void pushRepostView() {
-
+    public void pushRevenueView() throws IOException {
+        UI UI = new UI();
+        UI.changePane(this.rootPane, "revenueView");
     }
 
-    public void pushAdministrativeView() {
-
+    public void pushAdministrativeView() throws IOException {
+        UI UI = new UI();
+        UI.changePane(this.rootPane, "changePasswordView");
     }
 
     public void pushAboutView() {
 
+    }
+
+    public void logoutHandler() {
+        UI UI = new UI();
+        UI.closeUIElement(this.rootPane);
     }
 }

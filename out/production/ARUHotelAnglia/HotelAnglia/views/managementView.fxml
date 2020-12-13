@@ -24,12 +24,12 @@
             </Menu>
             <Menu text="Services">
                 <items>
-                    <MenuItem text="Manage Services" />
+                    <MenuItem onAction="#pushManageServicesView" text="Manage Services" />
                 </items>
             </Menu>
             <Menu text="Administrative">
                 <items>
-                    <MenuItem text="Administrative" />
+                    <MenuItem onAction="#pushAdministrativeView" text="Administrative" />
                 </items>
             </Menu>
             <Menu text="Reports">
@@ -37,13 +37,18 @@
                     <MenuItem text="Room Status Report" />
                     <MenuItem text="Receipt" />
                     <MenuItem text="Search" />
-                    <MenuItem text="Revenue" />
+                    <MenuItem onAction="#pushRevenueView" text="Revenue" />
                     <MenuItem text="History" />
                 </items>
             </Menu>
             <Menu text="About">
                 <items>
                     <MenuItem text="About" />
+                </items>
+            </Menu>
+            <Menu text="Logout">
+                <items>
+                    <MenuItem onAction="#logoutHandler" text="Logout" />
                 </items>
             </Menu>
         </MenuBar>

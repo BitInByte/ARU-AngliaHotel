@@ -78,106 +78,139 @@
     -fx-pref-height: 200px;
 }
 
-/*.main-button:hover {*/
-/*    -fx-background-color: #e1c848;*/
-/*}*/
+.main-button:hover,
+.normal-button:hover {
+    -fx-background-color: #e1c848;
+}
 
 /*.main-button:pressed {*/
 /*    -fx-translate-y: 0.8;*/
 /*    -fx-translate-x: 0.8;*/
 /*}*/
 
-#mainWindow {
-    -fx-pref-height: 300px;
-    -fx-pref-width: 500px;
-}
-
-#customerView {
-    -fx-pref-height: 300px;
-    -fx-pref-width: 500px;
-}
-
-#managementLoginWindow {
-    -fx-pref-width: 600px;
-    -fx-pref-height: 300px;
-}
-
-#newBookingViewWindow {
-    -fx-pref-width: 600px;
-    -fx-pref-height: 300px;
-}
-
-#applicationFormWindow {
-    -fx-pref-width: 600px;
-    -fx-pref-height: 300px;
-}
-
-#customerManageBookingWindow {
-    -fx-pref-width: 600px;
-    -fx-pref-height: 300px;
-}
-
-#managementWindow {
-    -fx-pref-width: 600px;
-    -fx-pref-height: 400px;
-}
-
-#manageBookingWindow {
-    -fx-pref-width: 600px;
-    -fx-pref-height: 400px;
-}
-
-#manageRoomWindow {
-    -fx-pref-width: 600px;
-    -fx-pref-height: 400px;
-}
-
+#mainWindow,
+#customerView,
 #roomEditWindow {
     -fx-pref-height: 300px;
     -fx-pref-width: 500px;
 }
 
-#bookingSummary {
-    -fx-pref-width: 600px;
-    -fx-pref-height: 300px;
-}
+/*#customerView {*/
+/*    -fx-pref-height: 300px;*/
+/*    -fx-pref-width: 500px;*/
+/*}*/
 
-#checkInWindow {
-    -fx-pref-width: 600px;
-    -fx-pref-height: 400px;
-}
-
-#checkOutWindow {
-    -fx-pref-width: 600px;
-    -fx-pref-height: 400px;
-}
-
-#errorWindow {
-    -fx-pref-width: 600px;
-    -fx-pref-height: 400px;
-}
-
-#successWindow {
-    -fx-pref-width: 600px;
-    -fx-pref-height: 400px;
-}
-
-#selectedCustomerBookingWindow {
-    -fx-pref-width: 600px;
-    -fx-pref-height: 300px;
-}
-
+#managementLoginWindow,
+#newBookingViewWindow,
+#applicationFormWindow,
+#customerManageBookingWindow,
+#bookingSummary,
+#selectedCustomerBookingWindow,
 #addNewServiceWindow {
     -fx-pref-width: 600px;
     -fx-pref-height: 300px;
 }
 
-#bookingPaymentWindow {
+/*#newBookingViewWindow {*/
+/*    -fx-pref-width: 600px;*/
+/*    -fx-pref-height: 300px;*/
+/*}*/
+
+/*#applicationFormWindow {*/
+/*    -fx-pref-width: 600px;*/
+/*    -fx-pref-height: 300px;*/
+/*}*/
+
+/*#customerManageBookingWindow {*/
+/*    -fx-pref-width: 600px;*/
+/*    -fx-pref-height: 300px;*/
+/*}*/
+
+#managementWindow,
+#manageBookingWindow,
+#manageRoomWindow,
+#checkInWindow,
+#checkOutWindow,
+#errorWindow,
+#successWindow,
+#bookingPaymentWindow,
+#customerBillWindow,
+#orderServiceWindow,
+#changePasswordWindow,
+#revenueWindow {
     -fx-pref-width: 600px;
-    -fx-pref-height: 400px;
+    -fx-pref-height: 450px;
+    -fx-vgap: 10px;
+    -fx-hgap: 10px;
+    -fx-alignment: "TOP_CENTER";
 }
 
-#customerBillWindow {
-    -fx-pref-width: 600px;
-    -fx-pref-height: 400px;
-}
+/*#manageBookingWindow {*/
+/*    -fx-pref-width: 600px;*/
+/*    -fx-pref-height: 400px;*/
+/*}*/
+
+/*#manageRoomWindow {*/
+/*    -fx-pref-width: 600px;*/
+/*    -fx-pref-height: 400px;*/
+/*}*/
+
+/*#roomEditWindow {*/
+/*    -fx-pref-height: 300px;*/
+/*    -fx-pref-width: 500px;*/
+/*}*/
+
+/*#bookingSummary {*/
+/*    -fx-pref-width: 600px;*/
+/*    -fx-pref-height: 300px;*/
+/*}*/
+
+/*#checkInWindow {*/
+/*    -fx-pref-width: 600px;*/
+/*    -fx-pref-height: 400px;*/
+/*}*/
+
+/*#checkOutWindow {*/
+/*    -fx-pref-width: 600px;*/
+/*    -fx-pref-height: 400px;*/
+/*}*/
+
+/*#errorWindow {*/
+/*    -fx-pref-width: 600px;*/
+/*    -fx-pref-height: 400px;*/
+/*}*/
+
+/*#successWindow {*/
+/*    -fx-pref-width: 600px;*/
+/*    -fx-pref-height: 400px;*/
+/*}*/
+
+/*#selectedCustomerBookingWindow {*/
+/*    -fx-pref-width: 600px;*/
+/*    -fx-pref-height: 300px;*/
+/*}*/
+
+/*#addNewServiceWindow {*/
+/*    -fx-pref-width: 600px;*/
+/*    -fx-pref-height: 300px;*/
+/*}*/
+
+/*#bookingPaymentWindow {*/
+/*    -fx-pref-width: 600px;*/
+/*    -fx-pref-height: 400px;*/
+/*}*/
+
+/*#customerBillWindow {*/
+/*    -fx-pref-width: 600px;*/
+/*    -fx-pref-height: 400px;*/
+/*}*/
+
+/*#orderServiceWindow {*/
+/*    -fx-pref-width: 600px;*/
+/*    -fx-pref-height: 400px;*/
+/*}*/
+
+/*#changePasswordWindow {*/
+/*    -fx-pref-width: 600px;*/
+/*    -fx-pref-height: 400px;*/
+/*}*/

@@ -10,7 +10,7 @@
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="HotelAnglia.controllers.CheckInView">
-    <GridPane alignment="TOP_CENTER" fx:id="checkInWindow">
+    <GridPane fx:id="checkInWindow">
         <HBox styleClass="center" GridPane.rowIndex="0" GridPane.columnSpan="2" >
             <Label text="Check In" styleClass="title" />
         </HBox>
@@ -31,7 +31,7 @@
 
         <HBox styleClass="center" GridPane.rowIndex="4" GridPane.columnSpan="2" >
             <Button fx:id="submitbtn" text="Check In"  styleClass="normal-button" onAction="#submitCheckInHandler" />
-            <Button fx:id="cancelbtn" text="Cancel"  styleClass="normal-button" />
+            <Button fx:id="cancelbtn" text="Cancel"  styleClass="normal-button" onAction="#closePage" />
         </HBox>
 
     </GridPane>

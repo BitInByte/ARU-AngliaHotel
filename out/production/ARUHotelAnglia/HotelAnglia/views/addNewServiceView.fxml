@@ -16,8 +16,8 @@
         <Label text="Add New Service" styleClass="title" />
     </HBox>
 
-    <Label text="Booking ID: " styleClass="text" GridPane.rowIndex="1" GridPane.columnIndex="0" />
-    <Label fx:id="bookingidl" text="" styleClass="text" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+    <Label text="Customer Name: " styleClass="text" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+    <Label fx:id="customerl" text="" styleClass="text" GridPane.rowIndex="1" GridPane.columnIndex="1" />
 
     <Label text="Service: " styleClass="text" GridPane.rowIndex="2" GridPane.columnIndex="0" />
     <ComboBox fx:id="servicecb" GridPane.rowIndex="2" GridPane.columnIndex="1" />

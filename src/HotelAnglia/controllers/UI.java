@@ -9,6 +9,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.Statement;
 
 public class UI {
 
@@ -68,6 +69,11 @@ public class UI {
 //    Close the current element
     public void closeUIElement(Button button) {
         Stage stage = (Stage) button.getScene().getWindow();
+        stage.close();
+    }
+
+    public void closeUIElement(GridPane gridPane) {
+        Stage stage = (Stage) gridPane.getScene().getWindow();
         stage.close();
     }
 

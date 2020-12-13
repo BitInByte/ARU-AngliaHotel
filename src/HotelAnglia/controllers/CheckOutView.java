@@ -81,7 +81,7 @@ public class CheckOutView {
             selectedBooking.setCheckoutDate(LocalDate.now());
 //            Query database to update the checkout date
             selectedBooking.updateCheckOutDateById();
-//            System.out.println("Days");
+            System.out.println("Days");
 //            Date datePicker = dateFormat.parse(this.reservationdatedp.getValue().toString());
 //            Get the days that the customer got inside of the hotel
 //            Get days stayed by the customer
@@ -92,7 +92,7 @@ public class CheckOutView {
 //            System.out.println(selectedBooking.getReservationDate());
 //            System.out.println(selectedBooking.getCheckoutDate());
 //            System.out.println(Duration.between(selectedBooking.getCheckoutDate(), selectedBooking.getReservationDate()).toDays());
-//            System.out.println(daysStayed);
+            System.out.println(daysStayed);
 //            System.out.println(selectedBooking.getRoom().getPrice());
 //            System.out.println("PRICE");
 //            Load all services on booking class
@@ -159,8 +159,8 @@ public class CheckOutView {
             this.bookingstv.setItems(checkedInBookingList);
         } else {
             System.out.println("Empty");
-            bookingstv.getItems().clear();
-            bookingstv.setPlaceholder(new Label("No more bookings to Check out today"));
+            this.bookingstv.getItems().clear();
+            this.bookingstv.setPlaceholder(new Label("No more bookings to Check out today"));
         }
     }
 }

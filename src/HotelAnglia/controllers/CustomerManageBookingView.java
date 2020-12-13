@@ -31,16 +31,16 @@ public class CustomerManageBookingView {
     public void initialize() {
 
         this.changebookingbtn.setDisable(true);
-        this.addservicebtn.setDisable(true);
+//        this.addservicebtn.setDisable(true);
     }
 
     public void fieldValidate() {
         if(!bookingidtf.getText().trim().isEmpty()) {
             this.changebookingbtn.setDisable(false);
-            this.addservicebtn.setDisable(false);
+//            this.addservicebtn.setDisable(false);
         } else {
             this.changebookingbtn.setDisable(true);
-            this.addservicebtn.setDisable(true);
+//            this.addservicebtn.setDisable(true);
         }
     }
 
@@ -50,7 +50,7 @@ public class CustomerManageBookingView {
         System.out.println(bookingID);
         Booking selectedBooking = new Booking();
         selectedBooking.getBookingById(bookingID);
-        if(selectedBooking.getBookingId() > 0) {
+        if(selectedBooking.getBookingId() > 0 && !selectedBooking.getStatus().equals("Checked-In") && !selectedBooking.getStatus().equals("Closed")) {
             System.out.println("Found a booking");
             System.out.println(selectedBooking.getBookingId());
 //            Check if the booking is canceled
@@ -74,10 +74,13 @@ public class CustomerManageBookingView {
                 stage.setResizable(false);
                 stage.show();
             }
+
+            UI UI = new UI();
+            UI.closeUIElement(this.changebookingbtn);
         } else {
             System.out.println("Booking not found, show an error");
             UI UI = new UI();
-            UI.showErrorView("There is no booking with that ID!");
+            UI.showErrorView("There is no booking with that ID or this ID already checked-in or it's closed!");
 //            FXMLLoader loader = new FXMLLoader();
 //            loader.setLocation(getClass().getResource("/HotelAnglia/views/errorView.fxml"));
 //            Parent pushingWindow = loader.load();

@@ -109,7 +109,8 @@ public class ApplicationFormView {
         System.out.println(availableRoom.getAvailability());
 //        Create a new payment
         System.out.println("Payment");
-        Payment newPayment = new Payment(paymentcb.getSelectionModel().getSelectedItem().toString(), availableRoom.getPrice());
+//        Payment newPayment = new Payment(paymentcb.getSelectionModel().getSelectedItem().toString(), availableRoom.getPrice());
+        Payment newPayment = new Payment(paymentcb.getSelectionModel().getSelectedItem().toString(), 0.0);
         newPayment.createNewPayment();
 //        Create a new customer
         System.out.println("Customer");

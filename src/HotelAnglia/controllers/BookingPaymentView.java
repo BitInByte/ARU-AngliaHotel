@@ -30,7 +30,7 @@ public class BookingPaymentView {
         this.checkedOutBooking.getPayment().updatePaymentIsPaid();
 
 //        Query Database booking status closed
-        checkedOutBooking.closeBookingByID();
+//        checkedOutBooking.closeBookingByID();
 
 //        Set Payment Date
         this.checkedOutBooking.getPayment().updatePaymentDate();

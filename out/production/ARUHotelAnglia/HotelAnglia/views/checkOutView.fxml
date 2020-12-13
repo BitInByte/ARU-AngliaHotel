@@ -11,13 +11,13 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="HotelAnglia.controllers.CheckOutView">
 
-    <GridPane alignment="TOP_CENTER" fx:id="checkOutWindow">
+    <GridPane fx:id="checkOutWindow">
         <HBox styleClass="center" GridPane.rowIndex="0" GridPane.columnIndex="0" >
             <Label text="Check Out" styleClass="title" />
         </HBox>
 
         <Label text="Bookings to check out" styleClass="text" GridPane.rowIndex="1" GridPane.columnIndex="0" />
-        <TableView fx:id="bookingstv" styleClass="roomstv" GridPane.rowIndex="3" GridPane.columnIndex="0" onMouseClicked="#buttonEnableHandler">
+        <TableView fx:id="bookingstv" styleClass="roomstv" GridPane.rowIndex="2" GridPane.columnIndex="0" onMouseClicked="#buttonEnableHandler">
             <columns>
                 <TableColumn fx:id="bookingid" text="Booking ID" />
                 <TableColumn fx:id="customerfullname" text="Customer Full Name" />
@@ -28,7 +28,7 @@
             </columns>
         </TableView>
 
-        <HBox styleClass="center" GridPane.rowIndex="4" GridPane.columnIndex="0" >
+        <HBox styleClass="center" GridPane.rowIndex="3" GridPane.columnIndex="0" >
             <Button fx:id="submitbtn" text="Check Out"  styleClass="normal-button" onAction="#checkOutHandler" />
             <Button fx:id="cancelbtn" text="Close"  styleClass="normal-button" onAction="#closePageHandler" />
         </HBox>

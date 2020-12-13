@@ -2,13 +2,12 @@ package HotelAnglia.models;
 
 import HotelAnglia.controllers.Connect;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 public class Payment {
 
@@ -80,6 +79,32 @@ public class Payment {
         String query = "UPDATE payment SET date = '" + this.paymentDate + "' WHERE payment_id = " + this.paymentId + ";";
         System.out.println(query);
         Connect.sqlUpdate(query);
+    }
+
+    public static ArrayList<String> getRevenueYears() throws SQLException {
+        ArrayList<String> revenueYearsArray = new ArrayList<>();
+        String query = "SELECT EXTRACT(YEAR FROM date) AS \"Revenue Years\" FROM payment WHERE date IS NOT NULL GROUP BY EXTRACT(YEAR FROM date);";
+        ResultSet result = Connect.sqlExecute(query);
+
+        while (result.next()) {
+            revenueYearsArray.add(result.getString("Revenue Years"));
+        }
+
+        for(String year : revenueYearsArray) {
+            System.out.println(year);
+        }
+
+        return revenueYearsArray;
+    }
+
+    public static ResultSet getRevenueYearByYear(String year) {
+        String query = "SELECT EXTRACT(MONTH FROM date) AS \"Month\", SUM(total_price) AS \"Total Month Income\" FROM payment WHERE date IS NOT NULL AND EXTRACT(YEAR FROM date) = " + year + " GROUP BY EXTRACT(MONTH FROM date) ORDER BY \"Month\";";
+        System.out.println(query);
+        ResultSet result = Connect.sqlExecute(query);
+
+//        Connect.resultPrinter(result);
+
+        return result;
     }
 
 //    Setters

@@ -99,8 +99,8 @@ public class NewBookingView {
 //        Get the Room Types
         ArrayList<String> roomTypes = Room.getRoomTypes();
 //        Add room types to the combobox
-        roomTypecb.getItems().addAll(roomTypes);
-        roomTypecb.setValue(roomTypes.get(0));
+        this.roomTypecb.getItems().addAll(roomTypes);
+        this.roomTypecb.setValue(roomTypes.get(0));
     }
 
     public void submitHandler() throws IOException {
@@ -114,7 +114,7 @@ public class NewBookingView {
 //        Push new data to the next controller
         ApplicationFormView controller = loader.getController();
 //        controller.initData("It works!");
-        controller.initData(datedp.getValue(), roomTypecb.getSelectionModel().getSelectedItem());
+        controller.initData(this.datedp.getValue(), this.roomTypecb.getSelectionModel().getSelectedItem());
 
 //        Open new window
         Stage stage = new Stage();
@@ -125,13 +125,13 @@ public class NewBookingView {
 
 //        Close current window
         UI UI = new UI();
-        UI.closeUIElement(submitbtn);
+        UI.closeUIElement(this.submitbtn);
 //        UI.createUIElement("Application Form", "applicationFormView");
     }
 
 //    Close page deleting the view
     public void closePage() {
         UI UI = new UI();
-        UI.closeUIElement(backbtn);
+        UI.closeUIElement(this.backbtn);
     }
 }
