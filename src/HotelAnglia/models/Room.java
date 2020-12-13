@@ -62,10 +62,10 @@ public class Room {
         }
     }
 
-    public void reserveRoom() {
+    public void occupyRoom() {
 //        if(this.type.equals("Available")) {
         try {
-            String query = "UPDATE room SET availability = 'Reserved' WHERE room_id = " + this.room_id + ";";
+            String query = "UPDATE room SET availability = 'Occupied' WHERE room_id = " + this.room_id + ";";
             Connect.sqlUpdate(query);
         } catch (Exception e) {
             e.printStackTrace();
@@ -75,6 +75,12 @@ public class Room {
 //
 //        }
     }
+
+//    public void updateRoomAvailableById() {
+//        String query = "UPDATE room SET availability = 'Available' WHERE room_id = " + this.room_id + ";";
+//        System.out.println(query);
+//        Connect.sqlUpdate(query);
+//    }
 
     public static ArrayList<String> getRoomTypes() {
 
@@ -186,6 +192,5 @@ public class Room {
     public String getType() { return this.type; }
     public String getAvailability() { return this.availability; }
     public double getPrice() { return this.price; }
-
     public String getRoom_number() { return room_number; }
 }

@@ -3,6 +3,7 @@ package HotelAnglia.controllers;
 import HotelAnglia.models.Booking;
 import HotelAnglia.models.Service;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 import java.text.ParseException;
@@ -23,6 +24,9 @@ public class CustomerBill {
 
     @FXML
     private Label servicesl;
+
+    @FXML
+    private Button closebtn;
 
     public void initData(Booking paidBooking) throws ParseException {
         String services = "";
@@ -50,6 +54,11 @@ public class CustomerBill {
 //        }
         System.out.println(services);
         this.servicesl.setText(services);
+    }
+
+    public void closePage() {
+        UI UI = new UI();
+        UI.closeUIElement(this.closebtn);
     }
 
 

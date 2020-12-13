@@ -4,6 +4,7 @@ import HotelAnglia.controllers.Connect;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -68,6 +69,19 @@ public class Payment {
         Connect.sqlUpdate(query);
     }
 
+    public void updatePaymentIsPaid() {
+        String query = "UPDATE payment SET isPaid = true WHERE payment_id = " + this.paymentId + ";";
+        System.out.println(query);
+        Connect.sqlUpdate(query);
+    }
+
+    public void updatePaymentDate() {
+        this.paymentDate = Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant());
+        String query = "UPDATE payment SET date = '" + this.paymentDate + "' WHERE payment_id = " + this.paymentId + ";";
+        System.out.println(query);
+        Connect.sqlUpdate(query);
+    }
+
 //    Setters
     public void setPaymentDate(Date paymentDate) { this.paymentDate = paymentDate; }
     public void setPaymentId(int paymentId) { this.paymentId = paymentId; }
@@ -79,14 +93,25 @@ public class Payment {
     public double getTotalPrice() { return totalPrice; }
     public int getPaymentId() { return paymentId; }
     public String getPaymentDate() {
+//        System.out.println(this.paymentId);
+        System.out.println(this.paymentDate);
         if(this.paymentDate != null) {
             return new SimpleDateFormat("dd/MM/yyyy").format(this.paymentDate);
+//            return this.paymentDate.toString();
         } else {
             return "Not Paid";
         }
     }
     public String getPaymentMethod() { return paymentMethod; }
-    public Boolean getIsPaid() { return isPaid; }
+    public String getIsPaid() {
+//        System.out.println("Is Paid");
+//        System.out.println(this.isPaid);
+        if(this.isPaid) {
+            return "Paid";
+        } else {
+            return "Not Paid";
+        }
+    }
 
 
 }

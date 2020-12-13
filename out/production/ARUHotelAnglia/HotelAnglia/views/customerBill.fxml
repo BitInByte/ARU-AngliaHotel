@@ -25,7 +25,7 @@
     <Label fx:id="servicesl" styleClass="text" GridPane.rowIndex="3" GridPane.columnIndex="1" />
 
     <HBox styleClass="center" GridPane.rowIndex="4" GridPane.columnSpan="2" >
-        <Button fx:id="closebtn" text="Close" styleClass="normal-button" />
+        <Button fx:id="closebtn" text="Close" styleClass="normal-button" onAction="#closePage" />
     </HBox>
 
     <stylesheets>

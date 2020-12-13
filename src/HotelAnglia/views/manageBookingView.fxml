@@ -26,6 +26,7 @@
                 <TableColumn fx:id="customerName" text="Customer Name" />
                 <TableColumn fx:id="customerEmail" text="Customer Email" />
                 <TableColumn fx:id="paymentMethod" text="Payment Method" />
+                <TableColumn fx:id="paymentStatus" text="Payment Status" />
                 <TableColumn fx:id="paymentDate" text="Payment Date" />
 <!--                <TableColumn fx:id="roomId" text="Room ID" />-->
                 <TableColumn fx:id="roomType" text="Room Type" />

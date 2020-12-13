@@ -180,7 +180,8 @@ public class Booking {
         if(!this.status.equals("Checked-In")) {
             System.out.println(this.status);
             this.room = room;
-            room.updateRoomAvailability("Not Available");
+//            room.updateRoomAvailability("In Use");
+            this.room.occupyRoom();
             this.status = "Checked-In";
             String query = "UPDATE booking SET status = '" + this.status + "', room_id = " + this.room.getRoom_id() +" WHERE booking_id = " + this.bookingId + ";";
             Connect.sqlUpdate(query);
@@ -189,6 +190,12 @@ public class Booking {
 
     public void checkOutById() {
         System.out.println("checking out");
+    }
+
+    public void closeBookingByID() {
+        String query = "UPDATE booking SET status = 'Closed' WHERE booking_id = " +this.bookingId + ";";
+        System.out.println(query);
+        Connect.sqlUpdate(query);
     }
 
     public ObservableList<Booking> listAllBookings() throws SQLException {
@@ -255,6 +262,8 @@ public class Booking {
         Room room;
         ObservableList<Booking> checkedInBookingList = FXCollections.observableArrayList();
         while(results.next()) {
+            System.out.println("DATE");
+            System.out.println(results.getDate("date"));
             customer = new Customer(results.getInt("customer_id"), results.getString("full_name"), results.getString("email"));
             payment = new Payment(results.getInt("payment_id"), results.getDate("date"), results.getBoolean("ispaid"), results.getString("payment_method"), results.getDouble("total_price"));
             room = new Room(results.getInt("room_id"), results.getString("room_number"), results.getString("availability"), results.getString("type"), results.getDouble("price"));

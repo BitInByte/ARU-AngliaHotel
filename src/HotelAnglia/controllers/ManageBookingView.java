@@ -45,6 +45,9 @@ public class ManageBookingView {
     private TableColumn<Booking, String> paymentMethod;
 
     @FXML
+    private TableColumn<Booking, String> paymentStatus;
+
+    @FXML
     private TableColumn<Booking, String> paymentDate;
 
     @FXML
@@ -103,17 +106,18 @@ public class ManageBookingView {
         System.out.println("Showing info");
         System.out.println(bookingList);
 //        Create values to fill the tableview columns
-        bookingId.setCellValueFactory(new PropertyValueFactory("bookingId"));
-        reservationId.setCellValueFactory(new PropertyValueFactory("reservationDate"));
+        this.bookingId.setCellValueFactory(new PropertyValueFactory("bookingId"));
+        this.reservationId.setCellValueFactory(new PropertyValueFactory("reservationDate"));
 //        reservationId.setCellValueFactory(bookingObject -> new SimpleStringProperty(bookingObject.getValue().getReservationDate().toString()));
-        bookingStatus.setCellValueFactory(new PropertyValueFactory("status"));
-        bookingDate.setCellValueFactory(new PropertyValueFactory("bookingDate"));
+        this.bookingStatus.setCellValueFactory(new PropertyValueFactory("status"));
+        this.bookingDate.setCellValueFactory(new PropertyValueFactory("bookingDate"));
 //        Lambda Expressions to access the Related Objects inside of the Booking object. With that we can access the customer, the payment and the room
-        customerName.setCellValueFactory(bookingObject -> new SimpleStringProperty(bookingObject.getValue().getCustomer().getFullName()));
-        bookingTotalPrice.setCellValueFactory(bookingObject -> new SimpleDoubleProperty(bookingObject.getValue().getPayment().getTotalPrice()));
-        customerEmail.setCellValueFactory(bookingObject -> new SimpleStringProperty(bookingObject.getValue().getCustomer().getEmail()));
-        paymentMethod.setCellValueFactory(bookingObject -> new SimpleStringProperty(bookingObject.getValue().getPayment().getPaymentMethod()));
-        paymentDate.setCellValueFactory(bookingObject -> new SimpleStringProperty(bookingObject.getValue().getPayment().getPaymentDate()));
+        this.customerName.setCellValueFactory(bookingObject -> new SimpleStringProperty(bookingObject.getValue().getCustomer().getFullName()));
+        this.bookingTotalPrice.setCellValueFactory(bookingObject -> new SimpleDoubleProperty(bookingObject.getValue().getPayment().getTotalPrice()));
+        this.customerEmail.setCellValueFactory(bookingObject -> new SimpleStringProperty(bookingObject.getValue().getCustomer().getEmail()));
+        this.paymentMethod.setCellValueFactory(bookingObject -> new SimpleStringProperty(bookingObject.getValue().getPayment().getPaymentMethod()));
+        this.paymentStatus.setCellValueFactory(bookingObject -> new SimpleStringProperty(bookingObject.getValue().getPayment().getIsPaid()));
+        this.paymentDate.setCellValueFactory(bookingObject -> new SimpleStringProperty(bookingObject.getValue().getPayment().getPaymentDate()));
 //        paymentDate.setCellValueFactory(bookingObject -> new Simpl;
 
 //        paymentDate.setCellValueFactory(column -> {
@@ -133,26 +137,26 @@ public class ManageBookingView {
 //           };
 //        });
 //        roomId.setCellValueFactory(bookingObject -> new SimpleIntegerProperty(bookingObject.getValue().getRoom().getRoom_id()));
-        roomType.setCellValueFactory(bookingObject -> new SimpleStringProperty(bookingObject.getValue().getRoomType()));
+        this.roomType.setCellValueFactory(bookingObject -> new SimpleStringProperty(bookingObject.getValue().getRoomType()));
 
 //        bookingId.setCellValueFactory(bookingObject -> new SimpleIntegerProperty(bookingObject.getValue().getBookingId()));
 //        customerName.setCellValueFactory(new PropertyValueFactory<Booking, String>("fullName"));
 
-        bookingstv.setItems(bookingList);
+        this.bookingstv.setItems(bookingList);
     }
 
     private void swapButtons(boolean isVisible ) {
 //        Swap buttons to get them enable or disable
         if (isVisible) {
-            approvebtn.setDisable(false);
-            modifybtn.setDisable(false);
-            managebtn.setDisable(false);
-            deletebtn.setDisable(false);
+            this.approvebtn.setDisable(false);
+            this.modifybtn.setDisable(false);
+            this.managebtn.setDisable(false);
+            this.deletebtn.setDisable(false);
         } else {
-            approvebtn.setDisable(true);
-            modifybtn.setDisable(true);
-            managebtn.setDisable(true);
-            deletebtn.setDisable(true);
+            this.approvebtn.setDisable(true);
+            this.modifybtn.setDisable(true);
+            this.managebtn.setDisable(true);
+            this.deletebtn.setDisable(true);
         }
     }
 }
