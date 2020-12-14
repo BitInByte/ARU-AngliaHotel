@@ -13,8 +13,10 @@ import java.sql.SQLException;
 
 public class AddNewServiceView {
 
+//    Declaring fields
     private Booking selectedBooking;
 
+//    Declaring UI elements
     @FXML
     private Label customerl;
 
@@ -27,6 +29,7 @@ public class AddNewServiceView {
     @FXML
     private Button backbtn;
 
+//    Data which will be pushed from the last window
     public void initData(Booking selectedBooking) throws SQLException {
 //        Disable submit button
         this.submitbtn.setDisable(true);
@@ -49,6 +52,7 @@ public class AddNewServiceView {
 //        });
     }
 
+//    Submit handler to when the submit button got pushed
     public void submitHandler() throws SQLException {
         System.out.println(this.servicecb.getValue());
 //        Create new Service instance
@@ -66,6 +70,7 @@ public class AddNewServiceView {
         UI.closeUIElement(this.submitbtn);
     }
 
+//    Close the page when close page button got pushed
     public void closePage() {
         UI UI = new UI();
         UI.closeUIElement(this.backbtn);

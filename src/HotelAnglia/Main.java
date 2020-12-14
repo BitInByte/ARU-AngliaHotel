@@ -12,16 +12,17 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+//        Load main window
         Parent root = FXMLLoader.load(getClass().getResource("views/mainWindow.fxml"));
         primaryStage.setTitle("ARU Anglia Hotel");
         primaryStage.setScene(new Scene(root));
         primaryStage.setResizable(false);
-//        primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.show();
 
 //        Create database
         this.createDB();
 
+//        Connect to database
         if(!Connect.getConnected("postgres", "admin")){
             System.out.println("Wrong Password...");
             System.exit(0);
@@ -30,7 +31,7 @@ public class Main extends Application {
             System.out.println("DataBase Connected Successfully...");
         }
 
-
+//        Call table creation method
         this.createTables();
     }
 
@@ -39,6 +40,7 @@ public class Main extends Application {
         launch(args);
     }
 
+//    Create database
     private void createDB() {
        Connect.createDatabase("postgres", "admin");
     }
@@ -78,6 +80,7 @@ public class Main extends Application {
         int executiveRoomQuantity = 10 + doubleRoomQuantity;
         int presidentialRoomQuantity = 5 + executiveRoomQuantity;
 
+//        Dummy data injection
         int pos = 1;
 
         for(int i = 0; i < singleRoomQuantity; i ++) {
@@ -122,16 +125,5 @@ public class Main extends Application {
         String customService = "INSERT INTO service (service_id, type, price) VALUES (5, 'Custom', 75)";
         Connect.sqlUpdate(customService);
 
-
-//        String singleRoom = "INSERT INTO room (room_id, type, availability, price) VALUES (1, Single, 'Available', 30);";
-//        Connect.sqlUpdate(singleRoom);
-//        singleRoom = "INSERT INTO room (room_id, type, availability, price) VALUES (1, Single, 'Available', 30);";
-//        Connect.sqlUpdate(singleRoom);
-//        String doubleRoom = "INSERT INTO room (room_id, type, quantity, price) VALUES (Double, 30, 45);";
-//        Connect.sqlUpdate(doubleRoom);
-//        String executiveRoom = "INSERT INTO room (type, quantity, price) VALUES (Executive, 10, 100);";
-//        Connect.sqlUpdate(executiveRoom);
-//        String presidentialRoom = "INSERT INTO room (type, quantity, price) VALUES (Presidential, 5, 300);";
-//        Connect.sqlUpdate(presidentialRoom);
     }
 }

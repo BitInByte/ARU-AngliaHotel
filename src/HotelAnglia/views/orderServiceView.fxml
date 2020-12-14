@@ -24,9 +24,6 @@
             </columns>
         </TableView>
 
-<!--        <HBox styleClass="center" GridPane.rowIndex="3" GridPane.columnIndex="0" >-->
-<!--            <Button fx:id="cancelbtn" text="Close"  styleClass="normal-button" onAction="#closePageHandler" />-->
-<!--        </HBox>-->
     </GridPane>
 
     <stylesheets>

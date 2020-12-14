@@ -15,9 +15,7 @@ public class UI {
 
 //    Creates a new UI element with definitions defined as arguments
     public void createUIElement(String title, String filename) {
-        System.out.println("Pushing new window: " + title);
         try {
-//            System.out.println("Pushing new window: " + title);
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/HotelAnglia/views/" + filename + ".fxml"));
             Parent pushingWindow = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
@@ -26,14 +24,13 @@ public class UI {
             stage.setResizable(false);
             stage.show();
         } catch (Exception e) {
-            System.out.println(e);
+//            Catch possible errors and log it into the console
             e.printStackTrace();
         }
     }
 
 //    Create an error element
     public void showErrorView(String error) throws IOException {
-//        System.out.println("Booking not found, show an error");
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(UI.class.getResource("/HotelAnglia/views/errorView.fxml"));
         Parent pushingWindow = loader.load();
@@ -49,8 +46,8 @@ public class UI {
         stage.show();
     }
 
+//    Show a modal and show a success message
     public void showSuccessView(String message) throws IOException {
-        System.out.println("Booking not found, show an error");
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(UI.class.getResource("/HotelAnglia/views/successView.fxml"));
         Parent pushingWindow = loader.load();
@@ -72,6 +69,7 @@ public class UI {
         stage.close();
     }
 
+//    Close the current elements based on a grid pane
     public void closeUIElement(GridPane gridPane) {
         Stage stage = (Stage) gridPane.getScene().getWindow();
         stage.close();

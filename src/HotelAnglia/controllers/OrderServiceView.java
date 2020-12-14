@@ -19,7 +19,7 @@ import java.sql.SQLException;
 
 public class OrderServiceView {
 
-
+//    Declare UI elements
     @FXML
     private TableColumn<Booking, String> roomnumber;
 
@@ -38,13 +38,14 @@ public class OrderServiceView {
     @FXML
     private Button cancelbtn;
 
-
+//    Perform some actions at element initialization
     @FXML
     public void initialize() throws SQLException {
 //        List bookings
         this.listBookings();
     }
 
+//    Add service handler
     public void addServiceHandler() throws IOException, SQLException {
 
 //        Retrieve selected booking object
@@ -66,14 +67,13 @@ public class OrderServiceView {
         stage.show();
     }
 
-    public void closePageHandler() {
-        UI UI = new UI();
-        UI.closeUIElement(this.cancelbtn);
-    }
-
+//    List bookings on the table view
     private void listBookings() throws SQLException {
+//        Create new Booking empty instance
         Booking booking = new Booking();
+//        Get all checked in bookings from the server
         ObservableList<Booking> checkedInBookingList = booking.listAllCheckedInBookings();
+//        If there is checked in bookings then populate data on the bookings table view, if not, populate an error message on the booking table view
         if(!checkedInBookingList.isEmpty()) {
             this.roomnumber.setCellValueFactory(bookingObject -> new SimpleStringProperty(bookingObject.getValue().getRoom().getRoom_number()));
             this.bookingid.setCellValueFactory(bookingObject -> new SimpleStringProperty(Integer.toString(bookingObject.getValue().getBookingId())));
@@ -81,7 +81,6 @@ public class OrderServiceView {
             this.roomtype.setCellValueFactory(bookingObject -> new SimpleStringProperty(bookingObject.getValue().getRoom().getType()));
             this.bookingstv.setItems(checkedInBookingList);
         } else {
-            System.out.println("Empty");
             this.bookingstv.getItems().clear();
             this.bookingstv.setPlaceholder(new Label("No more bookings to Check out today"));
         }

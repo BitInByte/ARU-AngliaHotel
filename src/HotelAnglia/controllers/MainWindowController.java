@@ -12,19 +12,16 @@ public class MainWindowController {
     @FXML
     private Button managementBtn;
 
-//    Declaring UI Class
-//    private static UI UI;
 
-//    Generation Event Handlers
+//    Push a customer view
     public void pushCustomerWindow() {
         UI ui = new UI();
-//        System.out.println("Executing");
         ui.createUIElement("Customer View", "customerView");
     }
 
+//    push a management view
     public void pushManagementWindow() {
         UI ui = new UI();
         ui.createUIElement("Management Login", "managementLogin");
-//        ui.closeUIElement();
     }
 }

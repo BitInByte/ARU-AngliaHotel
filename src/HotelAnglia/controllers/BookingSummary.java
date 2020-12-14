@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 
 public class BookingSummary {
 
+//    Declare UI elements
     @FXML
     private Label bookingidl;
 
@@ -27,11 +28,13 @@ public class BookingSummary {
     @FXML
     private Button closepagebt;
 
+//    Close page after close button push
     public void closePage() {
         UI ui = new UI();
         ui.closeUIElement(closepagebt);
     }
 
+//    Init data fetched from the last window
     public void initData(int roomID, String roomType, String reservationDate, String fullName, String email, String paymentMethod) {
         this.bookingidl.setText(Integer.toString(roomID));
         this.roomTypel.setText(roomType);
@@ -40,6 +43,4 @@ public class BookingSummary {
         this.emaill.setText(email);
         this.paymentMethodl.setText(paymentMethod);
     }
-
-
 }

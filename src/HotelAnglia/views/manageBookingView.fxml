@@ -31,7 +31,6 @@
                 <TableColumn fx:id="paymentMethod" text="Payment Method" />
                 <TableColumn fx:id="paymentStatus" text="Payment Status" />
                 <TableColumn fx:id="paymentDate" text="Payment Date" />
-<!--                <TableColumn fx:id="roomId" text="Room ID" />-->
                 <TableColumn fx:id="roomType" text="Room Type" />
             </columns>
         </TableView>
@@ -40,7 +39,6 @@
         <HBox styleClass="center" GridPane.rowIndex="3" GridPane.columnSpan="2" >
             <Button fx:id="approvebtn" text="Approve"  styleClass="normal-button" onAction="#approveBookingHandler" />
             <Button fx:id="modifybtn" text="Modify"  styleClass="normal-button" onAction="#modifyBookingHandler" />
-<!--            <Button fx:id="managebtn" text="Manage"  styleClass="normal-button" />-->
             <Button fx:id="deletebtn" text="Delete"  styleClass="normal-button" onAction="#deleteBookingHandler" />
         </HBox>
 

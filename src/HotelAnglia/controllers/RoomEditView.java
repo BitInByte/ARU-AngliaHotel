@@ -12,8 +12,10 @@ import java.io.IOException;
 
 public class RoomEditView {
 
+//    Declare fields
     private Room room;
 
+//    Declare UI elements
     @FXML
     private Label roomidel;
 
@@ -35,58 +37,36 @@ public class RoomEditView {
     @FXML
     private Button submitbt;
 
-
-//    @FXML
-//    public void initialize() {
-//        System.out.println(room.getType());
-//    }
-
-//    public void initialize() throws IOException {
-////        ManageRoomView manageRoomView = new ManageRoomView();
-////        String roomId = Integer.toString(manageRoomView.getRoom().getRoom_id());
-//
-////        int roomId = manageRoomView.getRoom().getRoom_id();
-////        System.out.println("Room id");
-////        System.out.println(roomId);
-////        System.out.println(this.room.getRoom_id());
-////        roomtitlel.setText(roomId);
-////        FXMLLoader loader = new FXMLLoader(getClass().getResource("/HotelAnglia/views/manageRoomView.fxml"));
-////        Parent root = loader.load();
-////        ManageRoomView controller = loader.<ManageRoomView>getController();
-////        System.out.println("ROOM: ");
-////        System.out.println(this.room.getRoom_id());
-//    }
-
-//    public void initData(String data) {
-//        this.roomtitlel.setText(data);
-//        System.out.println(data);
-//    }
-
+//    Change room availability handler
     public void changeRoomAvailabilityHandler() {
+//        If there is reserved rooms populate then, update it into the database regarding the combo box value
+//        If not, then just close the elment
         if(!this.room.getAvailability().equals("Reserved")) {
-            this.room.updateRoomAvailabilityById(roomavailabilitycb.getValue());
+            this.room.updateRoomAvailabilityById(this.roomavailabilitycb.getValue());
         }
             UI ui = new UI();
-            ui.closeUIElement(submitbt);
-    //        System.out.println(roomavailabilitycb.getValue());
+            ui.closeUIElement(this.submitbt);
     }
 
+//    Fetch data from the previous controller
     public void initData(Room room) {
+//        Store the room instance into the room field
         this.room = room;
+//        Check if the room is reserved and change elements accordingly to it
         if(this.room.getAvailability().equals("Reserved")) {
-            roomiddl.setVisible(false);
-            roomavailabilitycb.setVisible(false);
-            roomidl.setVisible(false);
-            roomavailabilityl.setVisible(false);
-            errorl.setVisible(true);
-            submitbt.setText("Go Back");
-
+            this.roomiddl.setVisible(false);
+            this.roomavailabilitycb.setVisible(false);
+            this.roomidl.setVisible(false);
+            this.roomavailabilityl.setVisible(false);
+            this.errorl.setVisible(true);
+            this.submitbt.setText("Go Back");
         } else {
-            roomiddl.setText(Integer.toString(room.getRoom_id()));
-            roomavailabilitycb.setValue(room.getAvailability());
-            errorl.setVisible(false);
+            this.roomiddl.setText(Integer.toString(room.getRoom_id()));
+            this.roomavailabilitycb.setValue(room.getAvailability());
+            this.errorl.setVisible(false);
         }
     }
 
+//    Set a new room
     public void setRoomDate(Room room) { this.room = room; }
 }

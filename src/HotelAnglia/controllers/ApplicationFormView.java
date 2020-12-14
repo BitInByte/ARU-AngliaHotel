@@ -26,14 +26,13 @@ public class ApplicationFormView {
 //    Regex expression to validate emails
     private static final String regex = "^(.+)@(.+)$";
 
+//    Declaring fields
     private boolean emailValidate;
-
     private boolean nameValidate;
-
     private LocalDate reservationDate;
-
     private String roomType;
 
+//    Declaring UI elements
     @FXML
     private Button submitbtn;
 
@@ -55,16 +54,7 @@ public class ApplicationFormView {
     @FXML
     private ComboBox paymentcb;
 
-
-//    @FXML
-//    public void initialize() {
-//        this.nameValidate = false;
-//        this.emailValidate = false;
-//        submitbtn.setDisable(true);
-//        roomtypel.setText(this.roomType);
-//        reservationdatel.setText(this.reservationDate.toString());
-//    }
-
+//  Validator which validates whether name field is empty or not
     public void nameValidator() {
         if(!nametf.getText().trim().isEmpty()) {
             this.nameValidate = true;
@@ -72,8 +62,7 @@ public class ApplicationFormView {
             this.nameValidate = false;
         }
 
-        System.out.println(this.nameValidate);
-
+//        Validate the nameValidate and the emailValidate to enable submit button
         if(this.nameValidate && this.emailValidate) {
             this.submitbtn.setDisable(false);
         } else {
@@ -81,55 +70,41 @@ public class ApplicationFormView {
         }
     }
 
+//    Validator which validates if the value inside of the label email is an email or not
     public void checkEmailValidator() {
 //        Initialize the regex expression
         Pattern pattern = Pattern.compile(regex);
 
 //        Checks if the email matches the regex expression
         Matcher matcher = pattern.matcher(emailtf.getText());
-
-//        System.out.println(matcher.matches() ? "Matches" : "Doesnt matches");
-
-//        this.emailValidate = matcher.matches() ? true : false;
         this.emailValidate = matcher.matches();
 
-        System.out.println(emailValidate);
-
+//        Validate the nameValidate and the emailValidate to enable submit button
         if(this.nameValidate && this.emailValidate) {
             this.submitbtn.setDisable(false);
         } else {
             this.submitbtn.setDisable(true);
         }
-
     }
 
+//    Submit handler to handle submit button push
     public void submitHandler() throws SQLException, IOException {
-        //        Get an available room id
-        System.out.println("RoomId");
+//        Get an available room id
         Room availableRoom = Room.getAvailableRoom(this.roomType);
-        System.out.println(availableRoom.getRoom_id());
-        System.out.println(availableRoom.getType());
-        System.out.println(availableRoom.getAvailability());
 //        Create a new payment
-        System.out.println("Payment");
-//        Payment newPayment = new Payment(paymentcb.getSelectionModel().getSelectedItem().toString(), availableRoom.getPrice());
         Payment newPayment = new Payment(paymentcb.getSelectionModel().getSelectedItem().toString(), 0.0);
         newPayment.createNewPayment();
 //        Create a new customer
-        System.out.println("Customer");
         Customer newCustomer = new Customer(this.nametf.getText(), this.emailtf.getText());
         newCustomer.createNewCustomer();
 //        Create new booking
         Booking newBooking = new Booking(this.reservationDate, newCustomer, newPayment, this.roomType);
         newBooking.createNewBooking();
-        System.out.println("New Booking ID");
-        System.out.println(newBooking.getBookingId());
-//        System.out.println(newPayment.getPaymentId());
 //        Reserve Room
 //        availableRoom.reserveRoom();
 
 //        Open Booking Summary Page
-        //        Load new window and controller
+//        Load new window and controller
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/HotelAnglia/views/bookingSummary.fxml"));
         Parent pushingWindow = loader.load();
@@ -152,6 +127,7 @@ public class ApplicationFormView {
         UI.closeUIElement(this.submitbtn);
     }
 
+//    Close page after close button push
     public void closePage() {
         UI UI = new UI();
         UI.closeUIElement(this.backbtn);

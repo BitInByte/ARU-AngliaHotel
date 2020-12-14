@@ -18,16 +18,16 @@ import java.util.Date;
 
 public class SelectedCustomerBookingView {
 
+//    Declare fields
     private Booking selectedBooking;
-
     private boolean validateCustomerName;
-
     private boolean validateCustomerEmail;
-
     private boolean validateReservationDate;
 
+//    Create a new date formatter
     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
+//    Declare UI elements
     @FXML
     private Label bookingidl;
 
@@ -53,66 +53,50 @@ public class SelectedCustomerBookingView {
     @FXML
     private Button closebtn;
 
-    public void changeBookingHandler() {
-
-    }
-
+//    Submit changes handler
     public void submitChangesHandler() throws ParseException, IOException {
 
+//        Create a new UI empty instance
         UI UI = new UI();
 
-        //       If date is different then perform date change
+//       If date is different then perform date change
         if(!this.validateReservationDate) {
 //            Validate if date is in the future
-            System.out.println("Date changed");
 //            Validate date
             LocalDate now = LocalDate.now();
             Date datePicker = dateFormat.parse(this.reservationdatedp.getValue().toString());
             Date dateToday = dateFormat.parse(now.toString());
-            System.out.println(datePicker);
-            System.out.println(dateToday);
 //                    If the date is in the past, then prompt an error on the error label
             if(dateToday.getTime() > datePicker.getTime()) {
-                System.out.println("Cannot perform this action!");
-//                UI UI = new UI();
+//                Show error modal with an message
                 UI.showErrorView("You cannot change a date to a past date!");
 //                Break this function here
                 return;
-//                errorlb.setText("Invalid Date. Please choose a date in the future!");
             } else {
-//                        If the date is in the future, then clear the error and enable the submit button
-                System.out.println("Valid date");
+//                If the date is in the future, then clear the error and enable the submit button
 //                Set a new reservation date
                 this.selectedBooking.setReservationDate(this.reservationdatedp.getValue());
 //                Query database with the new reservation date
                 this.selectedBooking.updateReservationDateById();
-                System.out.println("Date Changed");
-//                errorlb.setText("");
-//                submitbtn.setDisable(false);
             }
 
         }
 
+//        If the customer name failed validation
         if(!this.validateCustomerName) {
-            System.out.println("Name Changed");
 //            Set new customer name
             this.selectedBooking.getCustomer().setFullName(this.customernametf.getText());
 //            Query database with the new customer name
             this.selectedBooking.getCustomer().updateCustomerName();
-            System.out.println("Name Changed");
-//            this.customernametf.setText(this.selectedBooking.getCustomer().getFullName());
         }
 
+//        If the customer email failed validation
         if(!this.validateCustomerEmail) {
-            System.out.println("Email changed");
 //            Set new customer email
             this.selectedBooking.getCustomer().setEmail(this.customeremailtf.getText());
 //            Query database with the new customer email
             this.selectedBooking.getCustomer().updateCustomerEmail();
-            System.out.println("Email Changed");
         }
-
-
 
 //        Show Success message
         UI.showSuccessView("Your booking as successfully been changed!");
@@ -121,9 +105,11 @@ public class SelectedCustomerBookingView {
 
     }
 
+//    Cancel booking handler method
     public void cancelBookingHandler() throws IOException {
 //        Cancel Reservation
         this.selectedBooking.cancelReservationById();
+//        Create a new UI empty instance
         UI UI = new UI();
 //        Show Success message
         UI.showSuccessView("Your booking as successfully been canceled!");
@@ -131,11 +117,13 @@ public class SelectedCustomerBookingView {
         UI.closeUIElement(this.submitchangesbtn);
     }
 
+//    Close page handler after a close button push
     public void closePageHandler() {
         UI UI = new UI();
         UI.closeUIElement(this.closebtn);
     }
 
+//    Fetch data from previous controller
     public void initData(Booking selectedBooking) {
 //        Fetch data recovered from last page selection
         this.selectedBooking = selectedBooking;
@@ -145,7 +133,6 @@ public class SelectedCustomerBookingView {
         this.customeremailtf.setText(this.selectedBooking.getCustomer().getEmail());
         this.roomtypel.setText(this.selectedBooking.getRoomType());
         this.reservationstatusl.setText(this.selectedBooking.getStatus());
-//        this.reservationdatel.setText(this.selectedBooking.getReservationDate().toString());
         this.reservationdatedp.setValue(this.selectedBooking.getReservationDate());
 //        Disable buttons
         this.submitchangesbtn.setDisable(true);
@@ -163,29 +150,24 @@ public class SelectedCustomerBookingView {
         this.reservationdatedp.setOnAction(event -> this.validateData());
     }
 
+//    Data validation method
     private void validateData() {
-        System.out.println("Validation in progress");
-        System.out.println(this.customernametf.getText().equals(this.selectedBooking.getCustomer().getFullName()));
-//        boolean validateCustomerName = this.customernametf.getText().equals(this.selectedBooking.getCustomer().getFullName());
+//        Validate if the customer name on the text field is the same than the selected booking customer name
         this.validateCustomerName = this.customernametf.getText().equals(this.selectedBooking.getCustomer().getFullName());
 
-//        boolean validateCustomerEmail = this.customeremailtf.getText().equals(this.selectedBooking.getCustomer().getEmail());
+//        Validate if the customer email on the text field is the same than the selected booking customer email
         this.validateCustomerEmail = this.customeremailtf.getText().equals(this.selectedBooking.getCustomer().getEmail());
 
-//        boolean validateReservationDate = this.reservationdatedp.getValue().equals(this.selectedBooking.getReservationDate());
+//        Validate id the reservation date on the reservation date picker is the same than the selected booking reservation date
         this.validateReservationDate = this.reservationdatedp.getValue().equals(this.selectedBooking.getReservationDate());
 
-        System.out.println("test validation");
-        System.out.println(this.validateCustomerName);
-        System.out.println(this.validateCustomerEmail);
-        System.out.println(this.validateReservationDate);
-//        if(!this.customernametf.getText().equals(this.selectedBooking.getCustomer().getFullName()) || !this.customeremailtf.getText().equals(this.selectedBooking.getCustomer().getEmail())) {
+//        If all validation success
         if(!this.validateCustomerName || !this.validateCustomerEmail || !this.validateReservationDate) {
+//            Enable submit button
             this.submitchangesbtn.setDisable(false);
-            System.out.println("Not Equal");
         } else {
+//            If fail, then disable submit button
             this.submitchangesbtn.setDisable(true);
-            System.out.println("Equal");
         }
     }
 }

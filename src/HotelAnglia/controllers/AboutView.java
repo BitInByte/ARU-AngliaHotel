@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 
 public class AboutView {
 
+//    Declaring UI elements
     @FXML
     private Label aboutl;
 

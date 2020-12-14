@@ -12,8 +12,10 @@ import java.util.ArrayList;
 
 public class ManageRoomPriceView {
 
+//    Declare fields
     private Double roomPrice;
 
+//    Declare UI elements
     @FXML
     private ComboBox roomTypecb;
 
@@ -23,25 +25,32 @@ public class ManageRoomPriceView {
     @FXML
     private Button submitbt;
 
+//    Perform some actions at element initialization
     public void initialize() {
 
-        submitbt.setDisable(true);
+//        set the submit button disable
+        this.submitbt.setDisable(true);
 
 //        Get the room types
         ArrayList<String> roomTypes = Room.getRoomTypes();
 //        Display it on the combobox to be displayed
-        roomTypecb.getItems().addAll(roomTypes);
+        this.roomTypecb.getItems().addAll(roomTypes);
 
-        roomTypecb.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+//        Add an event listener to the room type combo box
+        this.roomTypecb.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
             public void changed(ObservableValue observableValue, Object o, Object t1) {
+//                Get the selected room type
                 String roomType = roomTypecb.getSelectionModel().getSelectedItem().toString();
-//                System.out.println(roomType);
                 try {
+//                    Attribute the room price to the roomPrice field
                    roomPrice = Room.getRoomPriceByType(roomType);
+//                   Displays the room price at the text field
                    roompricetf.setText(roomPrice.toString());
+//                   Validate if the button can be enabled
                     checkDisableButton();
                 } catch (Exception e) {
+//                    Catch possible error and log it to the console
                     e.printStackTrace();
                 }
             }
@@ -51,23 +60,23 @@ public class ManageRoomPriceView {
 //    Submit new price
     public void changeRoomPrice() {
 //        Update price on database
-        Room.updateRoomPrice(Double.parseDouble(roompricetf.getText()), roomTypecb.getSelectionModel().getSelectedItem().toString());
+        Room.updateRoomPrice(Double.parseDouble(this.roompricetf.getText()), this.roomTypecb.getSelectionModel().getSelectedItem().toString());
 
 //        Close the element
         UI ui = new UI();
-        ui.closeUIElement(submitbt);
+        ui.closeUIElement(this.submitbt);
     }
 
 //    Check if the digited value is double to enable the button
     public void checkDisableButton() {
 
-        if(roompricetf.getText().matches("\\d*\\.?\\d+")){
-            System.out.println("true");
-            submitbt.setDisable(false);
+//        Check if the room price text field value matches the regex expression
+        if(this.roompricetf.getText().matches("\\d*\\.?\\d+")){
+//            Enable the submit button
+            this.submitbt.setDisable(false);
         } else {
-            System.out.println(roompricetf);
-            System.out.println("false");
-            submitbt.setDisable(true);
+//            Disable the submit button
+            this.submitbt.setDisable(true);
         }
     }
 }

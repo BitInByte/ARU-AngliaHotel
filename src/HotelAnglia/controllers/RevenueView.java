@@ -13,12 +13,14 @@ import java.util.Map;
 
 public class RevenueView {
 
+//    Declare UI elements
     @FXML
     private ComboBox<String> revenueyearcb;
 
     @FXML
     private Label revenuesl;
 
+//    Perform some actions at elements initialization
     @FXML
     public void initialize() throws SQLException {
 //        Get revenue years
@@ -31,62 +33,52 @@ public class RevenueView {
             try {
                 this.listRevenues();
             } catch (Exception e) {
+//                Catch possible errors and log it into the console
                 e.printStackTrace();
             }
         });
     }
 
+//    List revenues method
     private void listRevenues() throws SQLException {
-        System.out.println(this.revenueyearcb.getValue());
+//        Get a revenue from the server by year
         ResultSet result = Payment.getRevenueYearByYear(this.revenueyearcb.getValue());
-//        HashMap<String, String> revenue = new HashMap<>();
-//        revenue.put("January", "0£");
-//        revenue.put("February", "0£");
-//        revenue.put("March", "0£");
-//        revenue.put("April", "0£");
-//        revenue.put("May", "0£");
-//        revenue.put("June", "0£");
-//        revenue.put("July", "0£");
-//        revenue.put("August", "0£");
-//        revenue.put("September", "0£");
-//        revenue.put("October", "0£");
-//        revenue.put("November", "0£");
-//        revenue.put("December", "0£");
-            String revenues = "";
+//        Create a revenue string
+        String revenues = "";
 
-            boolean jan = false;
-            boolean feb = false;
-            boolean mar = false;
-            boolean apr = false;
-            boolean may = false;
-            boolean jun = false;
-            boolean jul = false;
-            boolean aug = false;
-            boolean sep = false;
-            boolean out = false;
-            boolean nov = false;
-            boolean dec = false;
+//        Declare the aux boolean month variable
+        boolean jan = false;
+        boolean feb = false;
+        boolean mar = false;
+        boolean apr = false;
+        boolean may = false;
+        boolean jun = false;
+        boolean jul = false;
+        boolean aug = false;
+        boolean sep = false;
+        boolean out = false;
+        boolean nov = false;
+        boolean dec = false;
 
-            String janS = "";
-            String febS = "";
-            String marS = "";
-            String aprS = "";
-            String mayS = "";
-            String junS = "";
-            String julS = "";
-            String augS = "";
-            String sepS = "";
-            String outS = "";
-            String novS = "";
-            String decS = "";
+//        Declare the aux String message to each month variable
+        String janS = "";
+        String febS = "";
+        String marS = "";
+        String aprS = "";
+        String mayS = "";
+        String junS = "";
+        String julS = "";
+        String augS = "";
+        String sepS = "";
+        String outS = "";
+        String novS = "";
+        String decS = "";
 
-//        int month = 1;
+//        Loop through the server results
         while(result.next()) {
-            System.out.println(result.getDouble("Month"));
-            System.out.println(result.getDouble("Total Month Income"));
 
+//            Algorithm to populate price when there is a price in that month or 0£ when there is no price in that month
             if(result.getDouble("Month") == 1) {
-//                revenue.put("January", result.getDouble("Total Month Income") + "£");
                 janS = "Month: January = Revenue: "  + result.getDouble("Total Month Income") + "£\n";
                 jan = true;
             } else if(!jan) {
@@ -94,7 +86,6 @@ public class RevenueView {
                 jan = true;
             }
             if(result.getDouble("Month") == 2) {
-//                revenue.put("January", result.getDouble("Total Month Income") + "£");
                 febS = "Month: February = Revenue: "  + result.getDouble("Total Month Income") + "£\n";
                 feb = true;
             } else if(!feb) {
@@ -102,7 +93,6 @@ public class RevenueView {
                 feb = true;
             }
             if(result.getDouble("Month") == 3) {
-//                revenue.put("January", result.getDouble("Total Month Income") + "£");
                 marS = "Month: March = Revenue: "  + result.getDouble("Total Month Income") + "£\n";
                 mar = true;
             } else if(!mar) {
@@ -110,7 +100,6 @@ public class RevenueView {
                 mar = true;
             }
             if(result.getDouble("Month") == 4) {
-//                revenue.put("January", result.getDouble("Total Month Income") + "£");
                 aprS = "Month: April = Revenue: "  + result.getDouble("Total Month Income") + "£\n";
                 apr = true;
             } else if(!apr) {
@@ -118,7 +107,6 @@ public class RevenueView {
                 apr = true;
             }
             if(result.getDouble("Month") == 5) {
-//                revenue.put("January", result.getDouble("Total Month Income") + "£");
                 mayS = "Month: May = Revenue: "  + result.getDouble("Total Month Income") + "£\n";
                 may = true;
             } else if(!may) {
@@ -126,7 +114,6 @@ public class RevenueView {
                 may = true;
             }
             if(result.getDouble("Month") == 6) {
-//                revenue.put("January", result.getDouble("Total Month Income") + "£");
                 junS = "Month: June = Revenue: "  + result.getDouble("Total Month Income") + "£\n";
                 jun = true;
             } else if(!jun) {
@@ -134,7 +121,6 @@ public class RevenueView {
                 jun = true;
             }
             if(result.getDouble("Month") == 7) {
-//                revenue.put("January", result.getDouble("Total Month Income") + "£");
                 julS = "Month: July = Revenue: "  + result.getDouble("Total Month Income") + "£\n";
                 jul = true;
             } else if(!jul) {
@@ -142,7 +128,6 @@ public class RevenueView {
                 jul = true;
             }
             if(result.getDouble("Month") == 8) {
-//                revenue.put("January", result.getDouble("Total Month Income") + "£");
                 augS = "Month: August = Revenue: "  + result.getDouble("Total Month Income") + "£\n";
                 aug = true;
             } else if(!aug) {
@@ -150,7 +135,6 @@ public class RevenueView {
                 aug = true;
             }
             if(result.getDouble("Month") == 9) {
-//                revenue.put("January", result.getDouble("Total Month Income") + "£");
                 sepS = "Month: September = Revenue: "  + result.getDouble("Total Month Income") + "£\n";
                 sep = true;
             } else if(!sep) {
@@ -158,7 +142,6 @@ public class RevenueView {
                 sep = true;
             }
             if(result.getDouble("Month") == 10) {
-//                revenue.put("January", result.getDouble("Total Month Income") + "£");
                 outS = "Month: August = Revenue: "  + result.getDouble("Total Month Income") + "£\n";
                 out = true;
             } else if(!out) {
@@ -166,7 +149,6 @@ public class RevenueView {
                 out = true;
             }
             if(result.getDouble("Month") == 11) {
-//                revenue.put("January", result.getDouble("Total Month Income") + "£");
                 novS = "Month: November = Revenue: "  + result.getDouble("Total Month Income") + "£\n";
                 nov = true;
             } else if(!nov) {
@@ -174,18 +156,16 @@ public class RevenueView {
                 nov = true;
             }
             if(result.getDouble("Month") == 12) {
-//                revenue.put("January", result.getDouble("Total Month Income") + "£");
                 decS = "Month: December = Revenue: "  + result.getDouble("Total Month Income") + "£\n";
                 dec = true;
             } else if(!dec) {
                 decS = "Month: December = Revenue: 0£\n";
                 dec = true;
             }
-
-//            month++;
         }
+//        Combine all message together
             revenues = janS + febS + marS + aprS + mayS + junS + julS + augS + sepS + outS + novS + decS;
-            System.out.println(revenues);
+//        Populate the revenues into the revenues label
             this.revenuesl.setText(revenues);
     }
 }

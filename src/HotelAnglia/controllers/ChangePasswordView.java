@@ -11,6 +11,7 @@ import java.sql.SQLException;
 
 public class ChangePasswordView {
 
+//    Declare UI elements
     @FXML
     private PasswordField oldpasswordpf;
 
@@ -29,6 +30,7 @@ public class ChangePasswordView {
     @FXML
     private Button cancelbtn;
 
+//    Perform some actions at element initialization
     @FXML
     public void initialize() {
 //        Disable submit button
@@ -39,30 +41,29 @@ public class ChangePasswordView {
         this.repeatedpasswordpf.setOnKeyReleased(keyEvent -> this.validateText());
     }
 
-
+//    Submit change password handler for when the submit button got pushed
     public void submitChangePasswordHandler() throws SQLException {
 //        Verify password
         Manager changeManagerPassword = new Manager(Manager.getStoredUsername(), this.oldpasswordpf.getText());
         ResultSet result = changeManagerPassword.login();
+//        Check if result set have results and if have loop through it
         if (result.next()) {
-            System.out.println("Success");
 //            Verify if both are password match
             if(this.newpasswordpf.getText().equals(this.repeatedpasswordpf.getText())) {
-                System.out.println("Match");
 //                Set Values on the changeManagerPassword object
                 changeManagerPassword.setAccountId(Manager.getStoredAccountId());
                 changeManagerPassword.setUsername(Manager.getStoredUsername());
                 changeManagerPassword.setPassword(this.newpasswordpf.getText());
 //                Query database to change password
                 changeManagerPassword.changePassword();
+//                Show a success message
                 this.errorlb.setText("Success!");
             } else {
-                System.out.println("Doesnt Match");
 //                If both password doesnt match, then show an error
                 this.errorlb.setText("New password and repeat password doesn't match!");
             }
         } else {
-            System.out.println("Fail");
+//            Show a wrong password message ig the password inserted was not the correct one
             this.errorlb.setText("Wrong password, please insert your correct old password!");
         }
     }
@@ -71,9 +72,9 @@ public class ChangePasswordView {
     public void closePage() {
         UI UI = new UI();
         UI.closeUIElement(this.cancelbtn);
-
     }
 
+//    Validate text method
     private void validateText() {
 //        Enable button if all password fields have text
         if(this.oldpasswordpf.getText().trim().length() > 0 && this.newpasswordpf.getText().trim().length() > 0 && this.repeatedpasswordpf.getText().trim().length() > 0) {

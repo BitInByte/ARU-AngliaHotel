@@ -27,8 +27,10 @@ import java.util.Date;
 
 public class CheckOutView {
 
+//    Date formatter to format date type
     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
+//    Declare UI elements
     @FXML
     private TableColumn<Booking, Number> bookingid;
 
@@ -56,59 +58,47 @@ public class CheckOutView {
     @FXML
     private Button cancelbtn;
 
+//    Perform actions at element initialization
     @FXML
     public void initialize() throws SQLException {
+//        Call listCheckedInBookings method
         this.listCheckedInBookings();
+//        Set submit button to disable at element startup
         this.submitbtn.setDisable(true);
     }
 
+//    Check out handler
     public void checkOutHandler() throws IOException, ParseException, SQLException {
-//        long daysBetween = Duration.between(this.bookingstv.getSelectionModel().getSelectedItem().getBookingDate(), LocalDate.now()).toDays();
-//        https://stackoverflow.com/questions/20165564/calculating-days-between-two-dates-with-java
+//        Create a calculation to get the days between the selected booking date to the date now
         long daysBetween = ChronoUnit.DAYS.between(this.bookingstv.getSelectionModel().getSelectedItem().getBookingDate(), LocalDate.now());
-        System.out.println(daysBetween);
 
+//        If the check in was made in less than one day then the check out cannot proceed
         if(daysBetween < 1) {
+//            Create an UI empty instance
             UI UI = new UI();
+//            Create an error element with an error message
             UI.showErrorView("The Customer stayed less than 1 day!");
         } else {
-            System.out.println("More than 1 day");
-//            System.out.println(LocalDate.now());
+//            The days are bigger than 1 then...
 //            Get selected item from the table view
             Booking selectedBooking = this.bookingstv.getSelectionModel().getSelectedItem();
-//            System.out.println(this.bookingstv.getSelectionModel().getSelectedItem().getReservationDate());
 //            Set checkout date
             selectedBooking.setCheckoutDate(LocalDate.now());
 //            Query database to update the checkout date
             selectedBooking.updateCheckOutDateById();
-            System.out.println("Days");
-//            Date datePicker = dateFormat.parse(this.reservationdatedp.getValue().toString());
 //            Get the days that the customer got inside of the hotel
 //            Get days stayed by the customer
             Date checkIn = dateFormat.parse(selectedBooking.getReservationDate().toString());
             Date checkOut = dateFormat.parse(selectedBooking.getCheckoutDate().toString());
             long daysStayed = ((checkOut.getTime() - checkIn.getTime()) / (1000*60*60*24));
-//            LocalDate checkin = LocalDate.parse(selectedBooking.getReservationDate(), dateFormat);
-//            System.out.println(selectedBooking.getReservationDate());
-//            System.out.println(selectedBooking.getCheckoutDate());
-//            System.out.println(Duration.between(selectedBooking.getCheckoutDate(), selectedBooking.getReservationDate()).toDays());
-            System.out.println(daysStayed);
-//            System.out.println(selectedBooking.getRoom().getPrice());
-//            System.out.println("PRICE");
 //            Load all services on booking class
             selectedBooking.setServices(Service.getAllServicesByBookingId(selectedBooking.getBookingId()));
-//            System.out.println("SERVICES");
-//            for (Service service : selectedBooking.getServices()) {
-//                System.out.println(service.getType());
-//            }
 //            Get the price
             double price = daysStayed * selectedBooking.getRoom().getPrice();
 //            Get Services total price
             double servicesTotalPrice = Service.getTotalPriceByBookingID(selectedBooking.getBookingId());
-//            System.out.println(servicesTotalPrice);
 //            Sum price with servicesTotalPrice to get the customer bill
             price += servicesTotalPrice;
-//            System.out.println(price);
 //            Update the total payment price
             selectedBooking.getPayment().setTotalPrice(price);
 //            Query database to update total price
@@ -131,35 +121,42 @@ public class CheckOutView {
             UI UI = new UI();
             UI.closeUIElement(this.submitbtn);
         }
-
     }
 
+//    Button enable handler to enable the button after some validation
     public void buttonEnableHandler() {
         this.submitbtn.setDisable(false);
     }
 
+//    Close the page handler to close the page after a close button push
     public void closePageHandler() {
         UI UI = new UI();
         UI.closeUIElement(cancelbtn);
     }
 
+//    List all checked in bookings method
     private void listCheckedInBookings() throws SQLException {
+//        Create a new Booking empty instance
         Booking booking = new Booking();
+//        Get all checked in bookings list
         ObservableList<Booking> checkedInBookingList = booking.listAllCheckedInBookings();
-        System.out.println("Showing info");
-        System.out.println(checkedInBookingList.isEmpty());
 
+//        If there is checked in bookigs
         if(!checkedInBookingList.isEmpty()) {
+//            Lambda expressions to populate data to the table view in order to be able to access booking related data
             this.bookingid.setCellValueFactory(bookingObject -> new SimpleIntegerProperty(bookingObject.getValue().getBookingId()));
             this.customerfullname.setCellValueFactory(bookingObject -> new SimpleStringProperty(bookingObject.getValue().getCustomer().getFullName()));
             this.customeremail.setCellValueFactory(bookingObject -> new SimpleStringProperty(bookingObject.getValue().getCustomer().getEmail()));
             this.checkinDate.setCellValueFactory(bookingObject -> new SimpleStringProperty(bookingObject.getValue().getReservationDate().toString()));
             this.roomtype.setCellValueFactory(bookingObject -> new SimpleStringProperty(bookingObject.getValue().getRoom().getType()));
             this.roomnumber.setCellValueFactory(bookingObject -> new SimpleStringProperty(bookingObject.getValue().getRoom().getRoom_number()));
+//            Populate Booking instance
             this.bookingstv.setItems(checkedInBookingList);
         } else {
-            System.out.println("Empty");
+//            If there is no checkin bookings today
+//            Clear booking table view
             this.bookingstv.getItems().clear();
+//            Populate an error message on the bookings table view
             this.bookingstv.setPlaceholder(new Label("No more bookings to Check out today"));
         }
     }

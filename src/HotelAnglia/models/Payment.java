@@ -11,16 +11,17 @@ import java.util.*;
 
 public class Payment {
 
+//    Declare fields
     private int paymentId;
     private Date paymentDate;
     private Boolean isPaid;
     private String paymentMethod;
     private double totalPrice;
 
+//    Constructors
     public Payment() {  }
 
     public Payment(String paymentMethod, double totalPrice) {
-//        this.paymentDate = paymentDate;
         this.paymentMethod = paymentMethod;
         this.totalPrice = totalPrice;
         this.isPaid = false;
@@ -34,26 +35,16 @@ public class Payment {
         this.totalPrice = totalPrice;
     }
 
+//    Create new payment SQL query
     public void createNewPayment() {
-//        HashMap<String, String> params = new HashMap();
-
-//        TreeMap<String, String> params = new TreeMap();
+//        Prepare parameters
         String[] params = {this.isPaid.toString(), this.paymentMethod, Double.toString(this.totalPrice)};
 
 
-//        Create the query string
-//        String query = "INSERT INTO payment (date, isPaid, payment_method, total_price) VALUES (?, ?, ?, ?);";
+//        SQL string query
         String query = "INSERT INTO payment (isPaid, payment_method, total_price) VALUES (?, ?, ?);";
 
-
-//        Prepare params
-//        params.put("date", this.paymentDate.toString());
-//        params.put("string", this.status);
-//        params.put("string2", this.paymentMethod);
-//        params.put("double", Double.toString(this.totalPrice));
-
-//        execute query returning the id
-//        int paymentId = Connect.prepUpdateOld(query, params);
+//        Execute query and retrieve new payment id
         int paymentId = Connect.prepUpdatePayment(query, params);
 
 //        Update local id
@@ -62,25 +53,26 @@ public class Payment {
         }
     }
 
+//    Update total price by payment id SQL query
     public void updatePaymentTotalPriceById() {
         String query = "UPDATE payment SET total_price = " + this.totalPrice + " WHERE payment_id = " + this.paymentId + ";";
-        System.out.println(query);
         Connect.sqlUpdate(query);
     }
 
+//    Update payment is paid by payment id SQL query
     public void updatePaymentIsPaidById() {
         String query = "UPDATE payment SET isPaid = true WHERE payment_id = " + this.paymentId + ";";
-        System.out.println(query);
         Connect.sqlUpdate(query);
     }
 
+//    Update payment date by payment id SQL query
     public void updatePaymentDateById() {
         this.paymentDate = Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant());
         String query = "UPDATE payment SET date = '" + this.paymentDate + "' WHERE payment_id = " + this.paymentId + ";";
-        System.out.println(query);
         Connect.sqlUpdate(query);
     }
 
+//    Get revenue years SQL query
     public static ArrayList<String> getRevenueYears() throws SQLException {
         ArrayList<String> revenueYearsArray = new ArrayList<>();
         String query = "SELECT EXTRACT(YEAR FROM date) AS \"Revenue Years\" FROM payment WHERE date IS NOT NULL GROUP BY EXTRACT(YEAR FROM date);";
@@ -90,19 +82,13 @@ public class Payment {
             revenueYearsArray.add(result.getString("Revenue Years"));
         }
 
-        for(String year : revenueYearsArray) {
-            System.out.println(year);
-        }
-
         return revenueYearsArray;
     }
 
+//    Get revenue year by year SQL query
     public static ResultSet getRevenueYearByYear(String year) {
         String query = "SELECT EXTRACT(MONTH FROM date) AS \"Month\", SUM(total_price) AS \"Total Month Income\" FROM payment WHERE date IS NOT NULL AND EXTRACT(YEAR FROM date) = " + year + " GROUP BY EXTRACT(MONTH FROM date) ORDER BY \"Month\";";
-        System.out.println(query);
         ResultSet result = Connect.sqlExecute(query);
-
-//        Connect.resultPrinter(result);
 
         return result;
     }
@@ -118,25 +104,18 @@ public class Payment {
     public double getTotalPrice() { return totalPrice; }
     public int getPaymentId() { return paymentId; }
     public String getPaymentDate() {
-//        System.out.println(this.paymentId);
-        System.out.println(this.paymentDate);
         if(this.paymentDate != null) {
             return new SimpleDateFormat("dd/MM/yyyy").format(this.paymentDate);
-//            return this.paymentDate.toString();
         } else {
             return "Not Paid";
         }
     }
     public String getPaymentMethod() { return paymentMethod; }
     public String getIsPaid() {
-//        System.out.println("Is Paid");
-//        System.out.println(this.isPaid);
         if(this.isPaid) {
             return "Paid";
         } else {
             return "Not Paid";
         }
     }
-
-
 }

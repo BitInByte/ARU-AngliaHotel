@@ -23,8 +23,10 @@ import java.util.SimpleTimeZone;
 
 public class ManageBookingView {
 
+//    Declare fields
     private Booking selectedBooking;
 
+//    Declare UI elements
     @FXML
     private CheckBox showdeletedbookingcb;
 
@@ -79,6 +81,7 @@ public class ManageBookingView {
     @FXML
     private TableView<Booking> bookingstv;
 
+//    Perform some actions at element initialization
     @FXML
     public void initialize() throws SQLException {
 //        List bookings
@@ -86,23 +89,31 @@ public class ManageBookingView {
 //        Disable all buttons at initialization
         this.swapButtons(false);
 
+//        Set an action event listener
         this.showdeletedbookingcb.setOnAction(actionEvent -> {
+//            If the show deleted booking combo box is selected then perform some action
             if(this.showdeletedbookingcb.isSelected()) {
                 try {
+//                    List bookings
                     this.listBookings();
                 } catch (Exception e) {
+//                    Catch possible errors and log it to the console
                     e.printStackTrace();
                 }
             } else {
+//                If combo box is not selected
                 try {
+//                    List all bookings not deleted
                     this.listNotDeletedBookings();
                 } catch (Exception e) {
+//                    Catch possible errors and log it to the console
                     e.printStackTrace();
                 }
             }
         });
     }
 
+//    Booking manager handler
     public void bookingManageHandler() {
 //        Got the object selected
         this.selectedBooking = bookingstv.getSelectionModel().getSelectedItem();
@@ -114,9 +125,10 @@ public class ManageBookingView {
         }
     }
 
+//    Approve booking handler
     public void approveBookingHandler() throws SQLException, IOException {
 
-        System.out.println(this.selectedBooking.getBookingId());
+//        If the selected booking status is under confirmation then perform some actions
         if(this.selectedBooking.getStatus().equals("Under Confirmation")) {
 
 //        Approve the book in the database
@@ -124,11 +136,13 @@ public class ManageBookingView {
 //        Update the tableView to the new values
             this.listBookings();
         } else {
+//            If not, show the error modal with an error message
             UI UI = new UI();
             UI.showErrorView("This action cannot be performed in this booking status!");
         }
     }
 
+//    Modify booking handler
     public void modifyBookingHandler() throws IOException {
 //        Check if the booking status is checked in or approved or under confirmation
         if(this.selectedBooking.getStatus().equals("Under Confirmation") || this.selectedBooking.getStatus().equals("Checked-In") || this.selectedBooking.getStatus().equals("Approved")) {
@@ -147,12 +161,15 @@ public class ManageBookingView {
             stage.setResizable(false);
             stage.show();
         } else {
+//            Open the error modal with an error message
             UI UI = new UI();
             UI.showErrorView("This booking cannot be modified!");
         }
     }
 
+//    Delete booking handler
     public void deleteBookingHandler() throws IOException, SQLException {
+//        Only delete if the selected booking status is not either checked in or closed or canceled
         if(this.selectedBooking.getStatus().equals("Checked-In") || this.selectedBooking.getStatus().equals("Closed") || this.selectedBooking.getStatus().equals("Canceled")) {
 //            Show error if the booking is not confirmed or under confirmation
             UI UI = new UI();
@@ -165,16 +182,16 @@ public class ManageBookingView {
         }
     }
 
+//    List all not deleted bookings
     private void listNotDeletedBookings() throws SQLException {
+//        Create a new Booking empty instance
         Booking booking = new Booking();
+//        List all not deleted bookings
         ObservableList<Booking> bookingList = booking.listAllNotDeleteBookings();
 
-        System.out.println("Showing info");
-        System.out.println(bookingList);
 //        Create values to fill the tableview columns
         this.bookingId.setCellValueFactory(new PropertyValueFactory("bookingId"));
         this.reservationId.setCellValueFactory(new PropertyValueFactory("reservationDate"));
-//        reservationId.setCellValueFactory(bookingObject -> new SimpleStringProperty(bookingObject.getValue().getReservationDate().toString()));
         this.bookingStatus.setCellValueFactory(new PropertyValueFactory("status"));
         this.bookingDate.setCellValueFactory(new PropertyValueFactory("bookingDate"));
 //        Lambda Expressions to access the Related Objects inside of the Booking object. With that we can access the customer, the payment and the room
@@ -185,20 +202,19 @@ public class ManageBookingView {
         this.paymentStatus.setCellValueFactory(bookingObject -> new SimpleStringProperty(bookingObject.getValue().getPayment().getIsPaid()));
         this.paymentDate.setCellValueFactory(bookingObject -> new SimpleStringProperty(bookingObject.getValue().getPayment().getPaymentDate()));
         this.roomType.setCellValueFactory(bookingObject -> new SimpleStringProperty(bookingObject.getValue().getRoomType()));
+//        Populate the booking observable list into the table view
         this.bookingstv.setItems(bookingList);
     }
 
+//    List bookings methods
     private void listBookings() throws SQLException {
 //        Create a new booking object
         Booking booking = new Booking();
 //        Get observableList from the booking class listAllBookings object
         ObservableList<Booking> bookingList = booking.listAllBookings();
-        System.out.println("Showing info");
-        System.out.println(bookingList);
 //        Create values to fill the tableview columns
         this.bookingId.setCellValueFactory(new PropertyValueFactory("bookingId"));
         this.reservationId.setCellValueFactory(new PropertyValueFactory("reservationDate"));
-//        reservationId.setCellValueFactory(bookingObject -> new SimpleStringProperty(bookingObject.getValue().getReservationDate().toString()));
         this.bookingStatus.setCellValueFactory(new PropertyValueFactory("status"));
         this.bookingDate.setCellValueFactory(new PropertyValueFactory("bookingDate"));
 //        Lambda Expressions to access the Related Objects inside of the Booking object. With that we can access the customer, the payment and the room
@@ -208,44 +224,21 @@ public class ManageBookingView {
         this.paymentMethod.setCellValueFactory(bookingObject -> new SimpleStringProperty(bookingObject.getValue().getPayment().getPaymentMethod()));
         this.paymentStatus.setCellValueFactory(bookingObject -> new SimpleStringProperty(bookingObject.getValue().getPayment().getIsPaid()));
         this.paymentDate.setCellValueFactory(bookingObject -> new SimpleStringProperty(bookingObject.getValue().getPayment().getPaymentDate()));
-//        paymentDate.setCellValueFactory(bookingObject -> new Simpl;
-
-//        paymentDate.setCellValueFactory(column -> {
-//           return new TableCell<Booking, Date>() {
-//             SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-//
-//             @Override
-//               protected void updateItem(Date item, boolean empty) {
-//                 super.updateItem(item, empty);
-//                 if(!empty) {
-//                     setText(format.format(item));
-//                 } else {
-//                     setText("");
-//                     setGraphic(null);
-//                 }
-//             }
-//           };
-//        });
-//        roomId.setCellValueFactory(bookingObject -> new SimpleIntegerProperty(bookingObject.getValue().getRoom().getRoom_id()));
         this.roomType.setCellValueFactory(bookingObject -> new SimpleStringProperty(bookingObject.getValue().getRoomType()));
-
-//        bookingId.setCellValueFactory(bookingObject -> new SimpleIntegerProperty(bookingObject.getValue().getBookingId()));
-//        customerName.setCellValueFactory(new PropertyValueFactory<Booking, String>("fullName"));
-
+//        Populate the observable list into the bookings table view
         this.bookingstv.setItems(bookingList);
     }
 
+//    Swap buttons disable hanlder
     private void swapButtons(boolean isVisible ) {
 //        Swap buttons to get them enable or disable
         if (isVisible) {
             this.approvebtn.setDisable(false);
             this.modifybtn.setDisable(false);
-//            this.managebtn.setDisable(false);
             this.deletebtn.setDisable(false);
         } else {
             this.approvebtn.setDisable(true);
             this.modifybtn.setDisable(true);
-//            this.managebtn.setDisable(true);
             this.deletebtn.setDisable(true);
         }
     }

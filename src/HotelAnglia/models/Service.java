@@ -9,11 +9,13 @@ import java.util.ArrayList;
 
 public class Service {
 
+//    Declare fields
     private int serviceId;
     private String type;
     private Double price;
     private int bookingId;
 
+//    Constructores
     public Service() {  }
 
     public Service (int serviceId, String type, Double price, int bookingId) {
@@ -29,16 +31,17 @@ public class Service {
         this.price = price;
     }
 
+//    Get Price by service type SQL query
     public void getServiceByType() throws SQLException {
         String query = "SELECT * FROM service WHERE type = '" + this.type + "';";
         ResultSet result = Connect.sqlExecute(query);
         while (result.next()) {
             this.serviceId = result.getInt("service_id");
-//            this.type = result.getString("type");
             this.price = result.getDouble("price");
         }
     }
 
+//    Set new service by booking id SQL query
     public void setNewServiceByBookingId() {
 //        Create query to create new service
         String query = "INSERT INTO service_list (service_id, booking_id) VALUES (" + this.serviceId + ", " + this.bookingId + ");";
@@ -46,6 +49,7 @@ public class Service {
         Connect.sqlUpdate(query);
     }
 
+//    Get total price by booking id SQL query
     public static double getTotalPriceByBookingID(int bookingId) throws SQLException {
         double totalPrice = 0;
         String query = "SELECT SUM(price) AS \"Total Price\", booking_id FROM service AS s INNER JOIN service_list AS sl ON s.service_id = sl.service_id WHERE booking_id = " + bookingId + " GROUP BY booking_id;";
@@ -56,6 +60,7 @@ public class Service {
         return totalPrice;
     }
 
+//    Get all services by booking id SQL query
     public static ArrayList<Service> getAllServicesByBookingId(int bookingId) throws SQLException {
         ArrayList<Service> allServices = new ArrayList<>();
 
@@ -70,6 +75,7 @@ public class Service {
         return allServices;
     }
 
+//    Get service types SQL query
     public static ArrayList<String> getServiceTypes() throws SQLException {
 //        Create new service array
         ArrayList<String> serviceTypesArray = new ArrayList<>();
@@ -89,11 +95,13 @@ public class Service {
         return serviceTypesArray;
     }
 
+//    Getters
     public int getServiceId() { return serviceId; }
     public String getType() { return type; }
     public Double getPrice() { return price; }
     public int getBookingId() { return bookingId; }
 
+//    Setters
     public void setServiceId(int serviceId) { this.serviceId = serviceId; }
     public void setType(String type) { this.type = type; }
     public void setPrice(Double price) { this.price = price; }

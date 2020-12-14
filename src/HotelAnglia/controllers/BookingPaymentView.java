@@ -14,8 +14,10 @@ import java.text.ParseException;
 
 public class BookingPaymentView {
 
+//    Declare fields
     private Booking checkedOutBooking;
 
+//    Declare UI elements
     @FXML
     private Label customernamel;
 
@@ -25,6 +27,7 @@ public class BookingPaymentView {
     @FXML
     private Button proceedbtn;
 
+//    Proceed payment handler for when proceed button got pushed
     public void proceedPaymentHandler() throws IOException, ParseException {
 //        Query Database isPaid to 1
         this.checkedOutBooking.getPayment().updatePaymentIsPaidById();
@@ -36,12 +39,10 @@ public class BookingPaymentView {
         this.checkedOutBooking.getPayment().updatePaymentDateById();
 
 //        Change room availability to available
-//        System.out.println("ROOM:");
-//        System.out.println(this.checkedOutBooking.getRoom().getRoom_id());
         this.checkedOutBooking.getRoom().updateRoomAvailabilityById("Available");
 
 
-        //            Open Bill Window
+//            Open Bill Window
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/HotelAnglia/views/customerBill.fxml"));
         Parent pushingWindow = loader.load();
@@ -60,6 +61,7 @@ public class BookingPaymentView {
         UI.closeUIElement(this.proceedbtn);
     }
 
+//    Init data fetched from the last window
     public void initData(Booking checkedOutBooking) {
 //        Store the checked out booking retrieved from the last window
         this.checkedOutBooking = checkedOutBooking;

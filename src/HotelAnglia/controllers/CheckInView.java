@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 public class CheckInView {
 
+//    Declare UI elements
     @FXML
     private TableColumn<Booking, Number> bookingid;
 
@@ -34,17 +35,23 @@ public class CheckInView {
     @FXML
     private Button cancelbtn;
 
+//    Perform actions when element initialization
     @FXML
     public void initialize() throws SQLException {
         this.listTodaysBookings();
     }
 
+//    Get all room numbers
     public void getRoomNumbers() throws SQLException {
+//        Create a new Booking instance by the selected booking from the table view
         Booking selectedBooking = this.bookingstv.getSelectionModel().getSelectedItem();
+//        Get the room type from the selectedBooking instance
         String roomType = selectedBooking.getRoomType();
+//        Call listRooms method with the selected roomType
         this.listRooms(roomType);
     }
 
+//    Submit Check In Handler to perform actions after a submit button push
     public void submitCheckInHandler() throws SQLException {
 //        Got the selected booking from the table view
         Booking selectedBooking = bookingstv.getSelectionModel().getSelectedItem();
@@ -59,40 +66,40 @@ public class CheckInView {
         this.availableRoomscb.getItems().clear();
     }
 
+//    Close the page after a close button push
     public void closePage() {
         UI UI = new UI();
         UI.closeUIElement(this.cancelbtn);
     }
 
+//    List all rooms
     private void listRooms(String type) throws SQLException {
+//        Create a new array list to store all room types
         ArrayList<String> roomNumbers = Room.getRoomNumberByType(type);
+//        Attribute the room types to the combo box
         availableRoomscb.getItems().addAll(roomNumbers);
     }
 
+//    List todays bokings method
     private void listTodaysBookings() throws SQLException {
+//        Create a new Booking empty instance
         Booking booking = new Booking();
+//        Retrieve all todays booking from database
         ObservableList<Booking> todaysBookingList = booking.listAllTodaysBookings();
-        System.out.println("Showing info");
-//        System.out.println(todaysBookingList == null);
-        System.out.println(todaysBookingList.isEmpty());
 
+//        If there is todays booking
         if(!todaysBookingList.isEmpty()) {
-            System.out.println("Not Empty");
-            //        Populate data into the table view with lambda expression
-            bookingid.setCellValueFactory(bookingObject -> new SimpleIntegerProperty(bookingObject.getValue().getBookingId()));
-            customerfullname.setCellValueFactory(bookingObject -> new SimpleStringProperty(bookingObject.getValue().getCustomer().getFullName()));
-            customeremail.setCellValueFactory(bookingObject -> new SimpleStringProperty(bookingObject.getValue().getCustomer().getEmail()));
-            roomtype.setCellValueFactory(bookingObject -> new SimpleStringProperty(bookingObject.getValue().getRoomType()));
-            bookingstv.setItems(todaysBookingList);
+            //        Populate data into the table view with lambda expression to be able to get information from related booking tables
+            this.bookingid.setCellValueFactory(bookingObject -> new SimpleIntegerProperty(bookingObject.getValue().getBookingId()));
+            this.customerfullname.setCellValueFactory(bookingObject -> new SimpleStringProperty(bookingObject.getValue().getCustomer().getFullName()));
+            this.customeremail.setCellValueFactory(bookingObject -> new SimpleStringProperty(bookingObject.getValue().getCustomer().getEmail()));
+            this.roomtype.setCellValueFactory(bookingObject -> new SimpleStringProperty(bookingObject.getValue().getRoomType()));
+            this.bookingstv.setItems(todaysBookingList);
         } else {
-            System.out.println("Empty");
-            bookingstv.getItems().clear();
-            bookingstv.setPlaceholder(new Label("No Bookings Today"));
-
+//            Clear items on table view
+            this.bookingstv.getItems().clear();
+//            Show a message that there is no bookings today
+            this.bookingstv.setPlaceholder(new Label("No Bookings Today"));
         }
-
-
     }
-
-
 }
