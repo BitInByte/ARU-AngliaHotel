@@ -53,7 +53,7 @@ public class Room {
 //        }
 //    }
 
-    public void updateRoomAvailability(String availability) {
+    public void updateRoomAvailabilityById(String availability) {
         try {
             String updateRoomQuery = "UPDATE room SET availability = '" + availability + "' WHERE room_id = " + this.room_id + ";";
             Connect.sqlUpdate(updateRoomQuery);
@@ -119,7 +119,7 @@ public class Room {
         return roomsList;
     }
 
-    public static Double getRoomPriceWhereType(String type) throws SQLException {
+    public static Double getRoomPriceByType(String type) throws SQLException {
          Double price = null;
 
         System.out.println(type);

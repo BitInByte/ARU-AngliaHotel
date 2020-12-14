@@ -55,8 +55,9 @@ public class ManagementView {
         UI.changePane(this.rootPane, "changePasswordView");
     }
 
-    public void pushAboutView() {
-
+    public void pushAboutView() throws IOException {
+        UI UI = new UI();
+        UI.changePane(this.rootPane, "aboutView");
     }
 
     public void logoutHandler() {

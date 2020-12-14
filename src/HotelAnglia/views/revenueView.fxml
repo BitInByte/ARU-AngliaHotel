@@ -19,7 +19,9 @@
         <ComboBox fx:id="revenueyearcb" GridPane.rowIndex="1" GridPane.columnIndex="1">
         </ComboBox>
 
-        <Label fx:id="revenuesl" text="" styleClass="text" GridPane.rowIndex="2" GridPane.columnSpan="2" />
+        <ScrollPane GridPane.rowIndex="2" GridPane.columnSpan="2" >
+            <Label fx:id="revenuesl" text="" styleClass="text" />
+        </ScrollPane>
 
     </GridPane>
 

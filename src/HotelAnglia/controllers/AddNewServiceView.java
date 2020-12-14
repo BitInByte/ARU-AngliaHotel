@@ -58,7 +58,7 @@ public class AddNewServiceView {
 //        Fill newService instance with booking ID
         newService.setBookingId(this.selectedBooking.getBookingId());
 //        Query database to get service price and id
-        newService.getService();
+        newService.getServiceByType();
 //        Query database to add the service to the customer bill
         newService.setNewServiceByBookingId();
 //        Close page

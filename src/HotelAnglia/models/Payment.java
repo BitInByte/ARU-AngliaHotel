@@ -68,13 +68,13 @@ public class Payment {
         Connect.sqlUpdate(query);
     }
 
-    public void updatePaymentIsPaid() {
+    public void updatePaymentIsPaidById() {
         String query = "UPDATE payment SET isPaid = true WHERE payment_id = " + this.paymentId + ";";
         System.out.println(query);
         Connect.sqlUpdate(query);
     }
 
-    public void updatePaymentDate() {
+    public void updatePaymentDateById() {
         this.paymentDate = Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant());
         String query = "UPDATE payment SET date = '" + this.paymentDate + "' WHERE payment_id = " + this.paymentId + ";";
         System.out.println(query);

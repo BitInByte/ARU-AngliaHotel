@@ -83,6 +83,24 @@
     -fx-background-color: #e1c848;
 }
 
+.scroll-pane {
+    -fx-pref-width: 400px;
+    -fx-pref-height: 300px;
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-control-inner-background: transparent;
+    -fx-background: transparent;
+}
+
+.scroll-pane:focused {
+    -fx-background-insets: 0;
+}
+
+.scroll-pane .corner {
+    -fx-background-insets: 0;
+}
+
 /*.main-button:pressed {*/
 /*    -fx-translate-y: 0.8;*/
 /*    -fx-translate-x: 0.8;*/
@@ -137,7 +155,8 @@
 #customerBillWindow,
 #orderServiceWindow,
 #changePasswordWindow,
-#revenueWindow {
+#revenueWindow,
+#aboutWindow {
     -fx-pref-width: 600px;
     -fx-pref-height: 450px;
     -fx-vgap: 10px;

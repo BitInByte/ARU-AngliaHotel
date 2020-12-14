@@ -27,18 +27,18 @@ public class BookingPaymentView {
 
     public void proceedPaymentHandler() throws IOException, ParseException {
 //        Query Database isPaid to 1
-        this.checkedOutBooking.getPayment().updatePaymentIsPaid();
+        this.checkedOutBooking.getPayment().updatePaymentIsPaidById();
 
 //        Query Database booking status closed
-//        checkedOutBooking.closeBookingByID();
+        checkedOutBooking.closeBookingByID();
 
 //        Set Payment Date
-        this.checkedOutBooking.getPayment().updatePaymentDate();
+        this.checkedOutBooking.getPayment().updatePaymentDateById();
 
 //        Change room availability to available
 //        System.out.println("ROOM:");
 //        System.out.println(this.checkedOutBooking.getRoom().getRoom_id());
-        this.checkedOutBooking.getRoom().updateRoomAvailability("Available");
+        this.checkedOutBooking.getRoom().updateRoomAvailabilityById("Available");
 
 
         //            Open Bill Window

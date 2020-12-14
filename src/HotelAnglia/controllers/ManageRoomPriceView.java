@@ -38,7 +38,7 @@ public class ManageRoomPriceView {
                 String roomType = roomTypecb.getSelectionModel().getSelectedItem().toString();
 //                System.out.println(roomType);
                 try {
-                   roomPrice = Room.getRoomPriceWhereType(roomType);
+                   roomPrice = Room.getRoomPriceByType(roomType);
                    roompricetf.setText(roomPrice.toString());
                     checkDisableButton();
                 } catch (Exception e) {

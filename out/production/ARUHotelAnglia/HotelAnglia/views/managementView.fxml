@@ -34,16 +34,16 @@
             </Menu>
             <Menu text="Reports">
                 <items>
-                    <MenuItem text="Room Status Report" />
-                    <MenuItem text="Receipt" />
-                    <MenuItem text="Search" />
+<!--                    <MenuItem text="Room Status Report" />-->
+<!--                    <MenuItem text="Receipt" />-->
+<!--                    <MenuItem text="Search" />-->
                     <MenuItem onAction="#pushRevenueView" text="Revenue" />
-                    <MenuItem text="History" />
+<!--                    <MenuItem text="History" />-->
                 </items>
             </Menu>
             <Menu text="About">
                 <items>
-                    <MenuItem text="About" />
+                    <MenuItem onAction="#pushAboutView" text="About" />
                 </items>
             </Menu>
             <Menu text="Logout">

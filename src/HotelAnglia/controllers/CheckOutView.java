@@ -96,7 +96,7 @@ public class CheckOutView {
 //            System.out.println(selectedBooking.getRoom().getPrice());
 //            System.out.println("PRICE");
 //            Load all services on booking class
-            selectedBooking.setServices(Service.getAllServices(selectedBooking.getBookingId()));
+            selectedBooking.setServices(Service.getAllServicesByBookingId(selectedBooking.getBookingId()));
 //            System.out.println("SERVICES");
 //            for (Service service : selectedBooking.getServices()) {
 //                System.out.println(service.getType());

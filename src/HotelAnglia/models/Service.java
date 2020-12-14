@@ -10,11 +10,8 @@ import java.util.ArrayList;
 public class Service {
 
     private int serviceId;
-
     private String type;
-
     private Double price;
-
     private int bookingId;
 
     public Service() {  }
@@ -32,7 +29,7 @@ public class Service {
         this.price = price;
     }
 
-    public void getService() throws SQLException {
+    public void getServiceByType() throws SQLException {
         String query = "SELECT * FROM service WHERE type = '" + this.type + "';";
         ResultSet result = Connect.sqlExecute(query);
         while (result.next()) {
@@ -59,7 +56,7 @@ public class Service {
         return totalPrice;
     }
 
-    public static ArrayList<Service> getAllServices(int bookingId) throws SQLException {
+    public static ArrayList<Service> getAllServicesByBookingId(int bookingId) throws SQLException {
         ArrayList<Service> allServices = new ArrayList<>();
 
         String query = "SELECT s.service_id, s.type, s.price, sl.booking_id FROM service_list AS sl INNER JOIN service AS s ON sl.service_id = s.service_id WHERE booking_id = " + bookingId + ";";

@@ -38,6 +38,9 @@ public class ApplicationFormView {
     private Button submitbtn;
 
     @FXML
+    private Button backbtn;
+
+    @FXML
     private TextField nametf;
 
     @FXML
@@ -72,9 +75,9 @@ public class ApplicationFormView {
         System.out.println(this.nameValidate);
 
         if(this.nameValidate && this.emailValidate) {
-            submitbtn.setDisable(false);
+            this.submitbtn.setDisable(false);
         } else {
-            submitbtn.setDisable(true);
+            this.submitbtn.setDisable(true);
         }
     }
 
@@ -93,9 +96,9 @@ public class ApplicationFormView {
         System.out.println(emailValidate);
 
         if(this.nameValidate && this.emailValidate) {
-            submitbtn.setDisable(false);
+            this.submitbtn.setDisable(false);
         } else {
-            submitbtn.setDisable(true);
+            this.submitbtn.setDisable(true);
         }
 
     }
@@ -146,11 +149,12 @@ public class ApplicationFormView {
 
 //        Close current window
         UI UI = new UI();
-        UI.closeUIElement(submitbtn);
+        UI.closeUIElement(this.submitbtn);
     }
 
     public void closePage() {
-
+        UI UI = new UI();
+        UI.closeUIElement(this.backbtn);
     }
 
 //    Fetch data from the newBookView
@@ -160,8 +164,8 @@ public class ApplicationFormView {
 
         this.nameValidate = false;
         this.emailValidate = false;
-        submitbtn.setDisable(true);
-        roomtypel.setText(this.roomType);
-        reservationdatel.setText(this.reservationDate.toString());
+        this.submitbtn.setDisable(true);
+        this.roomtypel.setText(this.roomType);
+        this.reservationdatel.setText(this.reservationDate.toString());
     }
 }

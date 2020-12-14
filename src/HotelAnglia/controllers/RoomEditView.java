@@ -64,7 +64,7 @@ public class RoomEditView {
 
     public void changeRoomAvailabilityHandler() {
         if(!this.room.getAvailability().equals("Reserved")) {
-            this.room.updateRoomAvailability(roomavailabilitycb.getValue());
+            this.room.updateRoomAvailabilityById(roomavailabilitycb.getValue());
         }
             UI ui = new UI();
             ui.closeUIElement(submitbt);

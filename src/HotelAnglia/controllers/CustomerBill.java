@@ -34,7 +34,7 @@ public class CustomerBill {
         this.paidBooking = paidBooking;
 //        set text on the labels
         this.customernamel.setText(this.paidBooking.getCustomer().getFullName());
-        this.totalpricel.setText(Double.toString(this.paidBooking.getPayment().getTotalPrice()));
+        this.totalpricel.setText(Double.toString(this.paidBooking.getPayment().getTotalPrice()) + "£");
         System.out.println("SERVICES");
         Date checkIn = dateFormat.parse(this.paidBooking.getReservationDate().toString());
         Date checkOut = dateFormat.parse(this.paidBooking.getCheckoutDate().toString());
