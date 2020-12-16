@@ -1,6 +1,6 @@
 .root {
     -fx-background-color: #071c49;
-    -fx-grid-lines-visible: true;
+    /*-fx-grid-lines-visible: true;*/
     -fx-alignment: center;
     -fx-hgap: 25;
     -fx-vgap: 10;
@@ -13,8 +13,6 @@
 .main-button {
     -fx-background-color: #fdd100;
     -fx-border-color: #e1c848;
-    /*-fx-text-fill: #e1c848;*/
-    /*-fx-text-fill: #ffffff;*/
     -fx-text-fill: inherit;
     -fx-pref-height: 60px;
     -fx-cursor: hand;
@@ -35,7 +33,6 @@
 }
 
 .text {
-    /*-fx-font-size: 16px;*/
     -fx-text-fill: #ffffff;
 }
 
@@ -113,10 +110,6 @@
     -fx-pref-width: 500px;
 }
 
-/*#customerView {*/
-/*    -fx-pref-height: 300px;*/
-/*    -fx-pref-width: 500px;*/
-/*}*/
 
 #managementLoginWindow,
 #newBookingViewWindow,
@@ -128,21 +121,6 @@
     -fx-pref-width: 600px;
     -fx-pref-height: 300px;
 }
-
-/*#newBookingViewWindow {*/
-/*    -fx-pref-width: 600px;*/
-/*    -fx-pref-height: 300px;*/
-/*}*/
-
-/*#applicationFormWindow {*/
-/*    -fx-pref-width: 600px;*/
-/*    -fx-pref-height: 300px;*/
-/*}*/
-
-/*#customerManageBookingWindow {*/
-/*    -fx-pref-width: 600px;*/
-/*    -fx-pref-height: 300px;*/
-/*}*/
 
 #managementWindow,
 #manageBookingWindow,
@@ -163,73 +141,3 @@
     -fx-hgap: 10px;
     -fx-alignment: "TOP_CENTER";
 }
-
-/*#manageBookingWindow {*/
-/*    -fx-pref-width: 600px;*/
-/*    -fx-pref-height: 400px;*/
-/*}*/
-
-/*#manageRoomWindow {*/
-/*    -fx-pref-width: 600px;*/
-/*    -fx-pref-height: 400px;*/
-/*}*/
-
-/*#roomEditWindow {*/
-/*    -fx-pref-height: 300px;*/
-/*    -fx-pref-width: 500px;*/
-/*}*/
-
-/*#bookingSummary {*/
-/*    -fx-pref-width: 600px;*/
-/*    -fx-pref-height: 300px;*/
-/*}*/
-
-/*#checkInWindow {*/
-/*    -fx-pref-width: 600px;*/
-/*    -fx-pref-height: 400px;*/
-/*}*/
-
-/*#checkOutWindow {*/
-/*    -fx-pref-width: 600px;*/
-/*    -fx-pref-height: 400px;*/
-/*}*/
-
-/*#errorWindow {*/
-/*    -fx-pref-width: 600px;*/
-/*    -fx-pref-height: 400px;*/
-/*}*/
-
-/*#successWindow {*/
-/*    -fx-pref-width: 600px;*/
-/*    -fx-pref-height: 400px;*/
-/*}*/
-
-/*#selectedCustomerBookingWindow {*/
-/*    -fx-pref-width: 600px;*/
-/*    -fx-pref-height: 300px;*/
-/*}*/
-
-/*#addNewServiceWindow {*/
-/*    -fx-pref-width: 600px;*/
-/*    -fx-pref-height: 300px;*/
-/*}*/
-
-/*#bookingPaymentWindow {*/
-/*    -fx-pref-width: 600px;*/
-/*    -fx-pref-height: 400px;*/
-/*}*/
-
-/*#customerBillWindow {*/
-/*    -fx-pref-width: 600px;*/
-/*    -fx-pref-height: 400px;*/
-/*}*/
-
-/*#orderServiceWindow {*/
-/*    -fx-pref-width: 600px;*/
-/*    -fx-pref-height: 400px;*/
-/*}*/
-
-/*#changePasswordWindow {*/
-/*    -fx-pref-width: 600px;*/
-/*    -fx-pref-height: 400px;*/
-/*}*/

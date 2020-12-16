@@ -117,7 +117,7 @@ public class Booking {
 //    Get all todays bookings SQL query
     public ResultSet getAllTodaysBookings() {
 //        SQL query string
-        String query = "SELECT * FROM booking as b INNER JOIN customer as c ON b.customer_id = c.customer_id INNER JOIN payment as p ON b.payment_id = p.payment_id WHERE b.reservation_date = CURRENT_DATE AND NOT b.status = 'Checked-In' ORDER BY booking_id ASC;";
+        String query = "SELECT * FROM booking as b INNER JOIN customer as c ON b.customer_id = c.customer_id INNER JOIN payment as p ON b.payment_id = p.payment_id WHERE b.reservation_date = CURRENT_DATE AND NOT b.status = 'Checked-In' AND NOT b.status = 'Canceled' ORDER BY booking_id ASC;";
 //        Create a new result set with the returned results
         ResultSet results = Connect.sqlExecute(query);
 //        Return results

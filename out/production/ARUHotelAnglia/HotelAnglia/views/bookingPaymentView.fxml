@@ -24,7 +24,6 @@
 
     <HBox styleClass="center" GridPane.rowIndex="3" GridPane.columnSpan="2" >
         <Button fx:id="proceedbtn" text="Proceed Payment" styleClass="normal-button" onAction="#proceedPaymentHandler" />
-<!--        <Button fx:id="backbtn" text="Go Back" styleClass="normal-button" />-->
     </HBox>
 
     <stylesheets>

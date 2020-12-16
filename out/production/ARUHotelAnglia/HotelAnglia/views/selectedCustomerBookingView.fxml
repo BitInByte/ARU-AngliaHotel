@@ -25,7 +25,6 @@
     <Label text="Reservation Status: " styleClass="text" GridPane.rowIndex="4" GridPane.columnIndex="0" />
     <Label fx:id="reservationstatusl" text="" styleClass="text" GridPane.rowIndex="4" GridPane.columnIndex="1" />
     <Label text="Reservation Date: " styleClass="text" GridPane.rowIndex="5" GridPane.columnIndex="0" />
-<!--    <Label fx:id="reservationdatel" text="" styleClass="text" GridPane.rowIndex="5" GridPane.columnIndex="1" />-->
     <DatePicker fx:id="reservationdatedp" GridPane.rowIndex="5" GridPane.columnIndex="1" />
 
 

@@ -29,7 +29,7 @@ public class Connect {
 //                Create a db statement
                 Statement sqlStat = db.createStatement();
 //                Execute a create database statement
-                sqlStat.executeUpdate("CREATE DATABASE 'HotelAnglia'");
+                sqlStat.executeUpdate("CREATE DATABASE \"HotelAnglia\"");
             } catch (Exception e) {
 //                Catch errors and log it to the console
                 e.printStackTrace();

@@ -34,11 +34,7 @@
             </Menu>
             <Menu text="Reports">
                 <items>
-<!--                    <MenuItem text="Room Status Report" />-->
-<!--                    <MenuItem text="Receipt" />-->
-<!--                    <MenuItem text="Search" />-->
                     <MenuItem onAction="#pushRevenueView" text="Revenue" />
-<!--                    <MenuItem text="History" />-->
                 </items>
             </Menu>
             <Menu text="About">
