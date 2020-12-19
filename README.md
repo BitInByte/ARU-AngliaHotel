@@ -1,8 +1,7 @@
 # ARU-AngliaHotel
 
 ![Thumbnail](images/thumbnail.png)
-
-<center>ARU Hotel System</center>
+ARU Hotel System
 
 ## Getting Started
 
@@ -15,22 +14,18 @@ This project was built in case of study for a university modyle assignment and t
 The student was required to build an extended ERD model normalising it at the end.
 
 ![ERD](/images/ERD.png)
-
-<center>ERD Diagram</center>
+ERD Diagram
 
 ## Images
 
 ![New Booking(Customer)](/images/newBooking.png)
-
-<center>New Booking Window (Customer)</center>
+New Booking Window (Customer)
 
 ![Login(Manager)](images/login.png)
-
-<center>Login Window (Manager)</center>
+Login Window (Manager)
 
 ![Manage Room(Manager)](images/manageRoom.png)
-
-<center>Manage Room Window (Manager)</center>
+Manage Room Window (Manager)
 
 ## Built With
 
