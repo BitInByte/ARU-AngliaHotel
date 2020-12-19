@@ -13,13 +13,17 @@ This project was built in case of study for a university modyle assignment and t
 
 The student was required to build an extended ERD model normalising it at the end.
 
-![New Booking(Customer)](/images/ERD.png)
+![ERD](/images/ERD.png)
+ERD Diagram
 
 ## Images
 
 ![New Booking(Customer)](/images/newBooking.png)
+New Booking Window (Customer)
 ![Login(Manager)](images/login.png)
+Login Window (Manager)
 ![Manage Room(Manager)](images/manageRoom.png)
+Manage Room Window (Manager)
 
 ## Built With
 
